@@ -1,0 +1,25 @@
+Modelo Apuntes:
+
+Asignatura: Nombre de la asignatura (obligatorio).
+
+Tema: Tema específico del apunte (obligatorio).
+
+Apuntes: Contenido de los apuntes (obligatorio).
+
+Modelo Examenes:
+
+Fecha: Fecha del examen (obligatorio).
+
+Asignatura: Nombre de la asignatura (obligatorio).
+
+Temas: Temas que abarca el examen (obligatorio).
+
+Modelo Tareas:
+
+Asignatura: Nombre de la asignatura (obligatorio).
+
+Tareas: Descripción de la tarea (obligatorio).
+
+FechaLimite: Fecha límite para completar la tarea (obligatorio).
+
+DatosInteres: Datos adicionales de interés (opcional).
