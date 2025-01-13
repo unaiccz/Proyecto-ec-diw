@@ -2,6 +2,7 @@
 
 if (localStorage.getItem('theme') === 'dark') {
     document.body.classList.add('bg-dark');
+    document.body.classList.add('text-white');
     header.classList.add('bg-dark');
     footer.classList.add('bg-dark');
 }
