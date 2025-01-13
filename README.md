@@ -24,7 +24,7 @@ Teacher's Hub es una aplicación web diseñada para facilitar la gestión de tar
     ```
 2. Navega al directorio del proyecto:
     ```bash
-    cd teacher-hub
+    cd teacher-hub/backend
     ```
 3. Instala las dependencias del backend:
     ```bash
@@ -35,7 +35,7 @@ Teacher's Hub es una aplicación web diseñada para facilitar la gestión de tar
 
 1. Inicia el servidor:
     ```bash
-    npm start
+    node app.js
     ```
 2. Abre tu navegador y navega a `http://localhost:3000` para ver la aplicación en funcionamiento.
 
