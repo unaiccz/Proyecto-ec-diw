@@ -1,3 +1,5 @@
+
+
 if (localStorage.getItem('theme') === 'dark') {
     document.body.classList.add('bg-dark');
     header.classList.add('bg-dark');
@@ -8,6 +10,7 @@ themebtn.addEventListener('click', () => {
     document.body.classList.toggle('bg-dark');
     header.classList.toggle('bg-dark');
     footer.classList.toggle('bg-dark');
+    document.body.classList.toggle('text-white');
     if (document.body.classList.contains('bg-dark')) {
         localStorage.setItem('theme', 'dark');
     } else {
