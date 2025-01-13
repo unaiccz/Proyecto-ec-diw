@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <title>Title</title>
+        <title>Teacher's Hub-HOME</title>
         <!-- Required meta tags -->
         <meta charset="utf-8" />
         <meta
@@ -19,12 +19,30 @@
     </head>
 
     <body>
-        <header>
-            <!-- place navbar here -->\\\\\
+        <header class="bg-primary text-white text-center py-4" id="header">
+            <h1>HOME</h1> <img src="../img/home.png" alt="Tareas" width="50px">
+            <hr>
+            <button id="theme-toggle" class="btn btn-secondary">Toggle Dark Mode</button>
+            <a href="../about/index.html" class="float-end mr-5">
+                <img src="../../img/about.png" alt="about" width="50px" class="ms-5">
+            </a>
+         
         </header>
-        <main></main>
-        <footer>
-            <!-- place footer here -->
+        <nav>
+            <ul class="nav nav-pills justify-content-center">
+                <li class="nav-item"><a class="nav-link" href="../tareas/index.html">Tareas</a></li>
+                <li class="nav-item"><a class="nav-link" href="../apuntes/index.html">Apuntes</a></li>
+                <li class="nav-item"><a class="nav-link" href="../examenes/index.html">Exámenes</a></li>
+                <li class="nav-item"><a class="nav-link" href="../login/index.html">Login</a></li>
+    
+            </ul>
+        </nav>
+        <main class="container mt-4">
+            bs5-, >
+
+        </main>
+        <footer class="bg-primary text-white text-center py-3 mt-4 animate__animated animate__fadeInUp" id="footer">
+            <p>&copy; 2025 Teacher's Hub. All rights reserved.</p>
         </footer>
         <!-- Bootstrap JavaScript Libraries -->
         <script
@@ -38,5 +56,6 @@
             integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
             crossorigin="anonymous"
         ></script>
+        <script src="./home.js"></script>
     </body>
 </html>
