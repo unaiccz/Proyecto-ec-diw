@@ -24,7 +24,7 @@
             background-color: #1e1e1e;
             color: #ffffff;
         }
-        main{
+        main {
             height: 100vh;
         }
     </style>
@@ -47,7 +47,6 @@
             <li class="nav-item"><a class="nav-link" href="../apuntes/index.html">Apuntes</a></li>
             <li class="nav-item"><a class="nav-link" href="../examenes/index.html">Exámenes</a></li>
             <li class="nav-item"><a class="nav-link" href="../login/index.html">Login</a></li>
-
         </ul>
     </nav>
     <main class="container mt-4">
@@ -65,12 +64,16 @@
                 </select>
             </div>
             <div class="mb-3">
-                <label for="tema" class="form-label">Tema</label>
-                <input type="text" id="tema" class="form-control" placeholder="Tema">
+                <label for="tarea" class="form-label">Tareas</label>
+                <input type="text" id="tarea" class="form-control" placeholder="Tareas">
             </div>
             <div class="mb-3">
-                <label for="apuntesText" class="form-label">Apuntes</label>
-                <textarea id="apuntesText" class="form-control" placeholder="Apuntes"></textarea>
+                <label for="fechaLimite" class="form-label">Fecha Límite</label>
+                <input type="date" id="fechaLimite" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="datosInteres" class="form-label">Datos de Interés</label>
+                <textarea id="datosInteres" class="form-control" placeholder="Datos de Interés"></textarea>
             </div>
             <button type="submit" id="send" class="btn btn-primary">Enviar</button>
         </form>
@@ -82,6 +85,6 @@
     </footer>
     <!-- js -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-<script src="./tareas.js"></script>
+    <script src="./tareas.js"></script>
 </body>
 </html>

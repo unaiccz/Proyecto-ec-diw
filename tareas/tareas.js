@@ -1,36 +1,39 @@
-const getApuntes = async () => {
-    const res = await fetch('http://localhost:444/api/apuntes');
+const getTareas = async () => {
+    const res = await fetch('http://localhost:444/api/tareas');
     const data = await res.json();
     console.log(data);
-    const apuntesDiv = document.getElementById('apuntes');
-    apuntesDiv.innerHTML = ''; // Limpiar el contenido anterior
+    const tareasDiv = document.getElementById('apuntes');
+    tareasDiv.innerHTML = ''; // Limpiar el contenido anterior
     data.forEach(element => {
-        const { Asignatura, Tema, Apuntes } = element;
+        const { Asignatura, Tareas, FechaLimite, DatosInteres } = element;
         const card = document.createElement('div');
         card.className = 'card mb-3';
         card.innerHTML = `
             <div class="card-body">
                 <h2 class="card-title">${Asignatura}</h2>
-                <p class="card-text"><strong>Tema:</strong> ${Tema}</p>
-                <p class="card-text">${Apuntes}</p>
+                <p class="card-text"><strong>Tareas:</strong> ${Tareas}</p>
+                <p class="card-text"><strong>Fecha Límite:</strong> ${FechaLimite}</p>
+                <p class="card-text">${DatosInteres}</p>
             </div>
         `;
-        apuntesDiv.appendChild(card);
+        tareasDiv.appendChild(card);
     });
 }
 
-const sendApuntes = async (e) => {
+const sendTarea = async (e) => {
     e.preventDefault();
     const asignatura = document.getElementById('asignatura').value;
-    const tema = document.getElementById('tema').value;
-    const apuntes = document.getElementById('apuntesText').value;
+    const tareas = document.getElementById('tarea').value;
+    const fechaLimite = document.getElementById('fechaLimite').value;
+    const datosInteres = document.getElementById('datosInteres').value;
     const data = {
         Asignatura: asignatura,
-        Tema: tema,
-        Apuntes: apuntes
+        Tareas: tareas,
+        FechaLimite: fechaLimite,
+        DatosInteres: datosInteres
     }
     document.getElementById('form').reset();
-    const res = await fetch('http://localhost:444/api/apuntes', {
+    const res = await fetch('http://localhost:444/api/tareas', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -39,11 +42,11 @@ const sendApuntes = async (e) => {
     });
     const json = await res.json();
     console.log(json);
-    getApuntes();
+    getTareas();
 }
 
-document.getElementById('form').addEventListener('submit', sendApuntes);
-getApuntes();
+document.getElementById('form').addEventListener('submit', sendTarea);
+getTareas();
 
 // Toggle dark mode
 const header = document.getElementById('header');
