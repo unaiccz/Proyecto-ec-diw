@@ -5,87 +5,50 @@ import { Router } from 'express';
 
 const router = Router();
 
-router.get('/apuntes', async (req, res) => {
+// ...existing code...
+
+router.delete('/apuntes/:id', async (req, res) => {
   try {
-    const apuntes = await Apuntes.find();
-    if (apuntes.length === 0) {
-      res.json({ message: 'No hay apuntes' });
-    } else {
-      console.log('GET /apuntes', apuntes); // Log para depuración
-      res.json(apuntes);
+    const apuntes = await Apuntes.findByIdAndDelete(req.params.id);
+    if (!apuntes) {
+      return res.status(404).json({ message: 'Apunte no encontrado' });
     }
+    console.log('DELETE /apuntes/:id', apuntes); // Log para depuración
+    res.json({ message: 'Apunte eliminado' });
   } catch (error) {
-    console.error('Error en GET /apuntes:', error); // Log de error
+    console.error('Error en DELETE /apuntes/:id:', error); // Log de error
     res.status(500).json({ message: error.message });
   }
 });
 
-router.post('/apuntes', async (req, res) => {
-  const apuntes = new Apuntes({
-    Asignatura: req.body.Asignatura,
-    Tema: req.body.Tema,
-    Apuntes: req.body.Apuntes,
-  });
+router.delete('/examenes/:id', async (req, res) => {
   try {
-    const newApuntes = await apuntes.save();
-    console.log('POST /apuntes', newApuntes); // Log para depuración
-    res.status(201).json(newApuntes);
-  } catch (error) {
-    console.error('Error en POST /apuntes:', error); // Log de error
-    res.status(400).json({ message: error.message });
-  }
-});
-
-router.get('/examenes', async (req, res) => {
-  try {
-    const examenes = await Examenes.find();
-    console.log('GET /examenes', examenes); // Log para depuración
-    res.json(examenes);
-  } catch (error) {
-    console.error('Error en GET /examenes:', error); // Log de error
-    res.status(500).json({ message: error.message });
-  }
-});
-
-router.post('/examenes', async (req, res) => {
-  const examenes = new Examenes({
-    Fecha: req.body.Fecha,
-    Asignatura: req.body.Asignatura,
-    Temas: req.body.Temas,
-  });
-  try {
-    const newExamenes = await examenes.save();
-    console.log('POST /examenes', newExamenes); // Log para depuración
-    res.status(201).json(newExamenes);
-  } catch (error) {
-    console.error('Error en POST /examenes:', error); // Log de error
-    res.status(400).json({ message: error.message });
-  }
-});
-router.get('/tareas', async (req, res) => {
-  try {
-    const tareas = await Tareas.find();
-    console.log('GET /tareas', tareas); // Log para depuración
-    res.json(tareas);
-  } catch (error) {
-    console.error('Error en GET /tareas:', error); // Log de error
-    res.status(500).json({ message: error.message });
-  }
-});
-router.post('/tareas', async (req, res) => {
-    const tareas = new Tareas({
-      Asignatura: req.body.Asignatura,
-      Tareas: req.body.Tareas,
-      FechaLimite: req.body.FechaLimite,
-      DatosInteres: req.body.DatosInteres
-    });
-    try {
-        const newTareas = await tareas.save();
-        console.log('POST /tareas', newTareas); // Log para depuración
-        res.status(201).json(newTareas);
-    } catch (error) {
-        console.error('Error en POST /tareas:', error); // Log de error
-        res.status(400).json({ message: error.message });
+    const examenes = await Examenes.findByIdAndDelete(req.params.id);
+    if (!examenes) {
+      return res.status(404).json({ message: 'Examen no encontrado' });
     }
-    });
+    console.log('DELETE /examenes/:id', examenes); // Log para depuración
+    res.json({ message: 'Examen eliminado' });
+  } catch (error) {
+    console.error('Error en DELETE /examenes/:id:', error); // Log de error
+    res.status(500).json({ message: error.message });
+  }
+});
+
+router.delete('/tareas/:id', async (req, res) => {
+  try {
+    const tareas = await Tareas.findByIdAndDelete(req.params.id);
+    if (!tareas) {
+      return res.status(404).json({ message: 'Tarea no encontrada' });
+    }
+    console.log('DELETE /tareas/:id', tareas); // Log para depuración
+    res.json({ message: 'Tarea eliminada' });
+  } catch (error) {
+    console.error('Error en DELETE /tareas/:id:', error); // Log de error
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// ...existing code...
+
 export default router;

@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Teacher's Hub-HOME</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+
+        <!-- Bootstrap CSS v5.2.1 -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            crossorigin="anonymous"
+        />
+        <style>
+            main {
+                height: 100vh;
+            }
+        </style>
+    </head>
+
+    <body>
+        <header class="bg-primary text-white text-center py-4" id="header">
+            <h1>HOME</h1>
+            <img src="../img/home.png" alt="Tareas" width="50px" />
+            <hr />
+            <button id="theme-toggle" class="btn btn-secondary">
+                Toggle Dark Mode
+            </button>
+            <a href="../about/index.html" class="float-end mr-5">
+                <img
+                    src="../img/about.png"
+                    alt="about"
+                    width="50px"
+                    class="ms-5"
+                />
+            </a>
+        </header>
+        <nav>
+            <ul class="nav nav-pills justify-content-center">
+                <li class="nav-item">
+                    <a class="nav-link" href="../tareas/index.html">Tareas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../apuntes/index.html">Apuntes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../examenes/index.html">Exámenes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../login/index.html">Login</a>
+                </li>
+            </ul>
+        </nav>
+        <main class="container">
+            <h2>Bienvenido a Teacher's Hub</h2>
+            <section>
+                <p>
+                    Teacher's Hub es una aplicación web que facilita la gestión
+                    de tareas, apuntes y exámenes para el profesorado.
+                </p>
+                <p>
+                    Con Teacher's Hub podrás organizar tus tareas diarias,
+                    subir y compartir apuntes con tus alumnos y programar
+                    exámenes de forma sencilla y eficiente.
+                </p>
+            </section>
+            <section>
+                <h3>Características</h3>
+                <ul>
+                    <li>
+                        Gestión de tareas: crea, edita y elimina tareas de forma
+                        rápida y sencilla.
+                    </li>
+                    <li>
+                        Subida de apuntes: comparte apuntes con tus alumnos de
+                        forma segura y eficiente.
+                    </li>
+                    <li>
+                        Programación de exámenes: organiza tus exámenes de forma
+                        eficiente y recibe notificaciones de fechas importantes.
+                    </li>
+                </ul>
+            </section>
+            <section>
+                <h3>¿Cómo funciona?</h3>
+                <p>
+                    Para empezar a utilizar Teacher's Hub, simplemente
+                    regístrate en nuestra plataforma y empieza a disfrutar de
+                    todas las funcionalidades que te ofrecemos.
+                </p>
+                <p>
+                    Una vez registrado, podrás acceder a tu panel de control
+                    donde podrás gestionar tus tareas, subir apuntes y programar
+                    exámenes de forma sencilla y eficiente.
+                </p>
+            </section>
+            <h4>Aspectos técnicos</h4>
+            <p>
+                La aplicación Teacher's Hub ha sido desarrollada utilizando las
+                últimas tecnologías web como HTML5, CSS3, JavaScript y Bootstrap
+                5. Además, hemos utilizado MongoDB como base de datos, y Node.js
+                como parte del backend.
+            </p>
+
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button
+                            class="accordion-button"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#collapseOne"
+                            aria-expanded="true"
+                            aria-controls="collapseOne"
+                        >
+                            Node.js
+                        </button>
+                    </h2>
+                    <div
+                        id="collapseOne"
+                        class="accordion-collapse collapse show"
+                        aria-labelledby="headingOne"
+                        data-bs-parent="#accordionExample"
+                    >
+                        <div class="accordion-body">
+                            Node.js es un entorno de ejecución para JavaScript
+                            construido con el motor de JavaScript V8 de Chrome.
+                            Node.js usa un modelo de operaciones E/S sin bloqueo
+                            y orientado a eventos, que lo hace liviano y
+                            eficiente.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button
+                            class="accordion-button collapsed"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#collapseTwo"
+                            aria-expanded="false"
+                            aria-controls="collapseTwo"
+                        >
+                            MongoDB
+                        </button>
+                    </h2>
+                    <div
+                        id="collapseTwo"
+                        class="accordion-collapse collapse"
+                        aria-labelledby="headingTwo"
+                        data-bs-parent="#accordionExample"
+                    >
+                        <div class="accordion-body">
+                            MongoDB es una base de datos NoSQL orientada a
+                            documentos que permite almacenar datos en un formato
+                            flexible y escalable. Es ideal para aplicaciones que
+                            requieren manejar grandes volúmenes de datos y
+                            necesitan alta disponibilidad y rendimiento.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <section class="text-center mt-4">
+                <a href="https://github.com/unaiccz/Proyecto-ec-diw" class="btn btn-dark" target="_blank">
+                    <i class="bi bi-github"></i> Visita nuestro GitHub
+                </a>
+            </section>
+        </main>
+        <script
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"
+        ></script>
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+            crossorigin="anonymous"
+        ></script>
+        <script src="./home.js"></script>
+        <footer
+            class="bg-primary text-white text-center py-3 mt-4 animate__animated animate__fadeInUp"
+            id="footer"
+        >
+            <p>&copy; 2025 Teacher's Hub. All rights reserved.</p>
+        </footer>
+    </body>
+</html>

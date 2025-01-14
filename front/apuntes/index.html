@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher's Hub-Apuntes</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- icono -->
+    <link rel="icon" href="../img/Apuntes.png" type="image/x-icon">
+    <style>
+        body.dark-mode {
+            background-color: #121212;
+            color: #ffffff;
+        }
+        .card.dark-mode {
+            background-color: #1e1e1e;
+            color: #ffffff;
+        }
+        .nav-pills .nav-link.dark-mode {
+            background-color: #1e1e1e;
+            color: #ffffff;
+        }
+        header.dark-mode, footer.dark-mode {
+            background-color: #1e1e1e;
+            color: #ffffff;
+        }
+        main{
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+    <header class="bg-primary text-white text-center py-4" id="header">
+        <h1>Apuntes</h1> <img src="../img/Apuntes.png" alt="Apuntes" width="50px">
+        <hr>
+        <button id="theme-toggle" class="btn btn-secondary">Toggle Dark Mode</button>
+        <a href="../about/index.html" class="float-right mr-5">
+            <img src="../img/about.png" alt="about" width="50px" class="float-left ml-5">
+        </a>   <a href="../home/index.html" class="float-right mr-5">
+            <img src="../img/home.png" alt="home" width="50px" class="float-left ml-5">
+        </a>
+    </header>
+    <nav>
+        <ul class="nav nav-pills justify-content-center">
+            <li class="nav-item"><a class="nav-link" href="../tareas/index.html">Tareas</a></li>
+            <li class="nav-item"><a class="nav-link active" href="../apuntes/index.html">Apuntes</a></li>
+            <li class="nav-item"><a class="nav-link" href="../examenes/index.html">Exámenes</a></li>
+            <li class="nav-item"><a class="nav-link" href="../login/index.html">Login</a></li>
+
+        </ul>
+    </nav>
+    <main class="container mt-4">
+        <form id="form" class="mb-4">
+            <div class="mb-3">
+                <label for="asignatura" class="form-label">Asignatura</label>
+                <select id="asignatura" class="form-select">
+                    <option value="E_cliente">E_cliente</option>
+                    <option value="E_servidor">E_servidor</option>
+                    <option value="Entornos_desarrollo">Entornos_desarrollo</option>
+                    <option value="Ingles">Ingles</option>
+                    <option value="dIw">dIw</option>
+                    <option value="Empresa">Empresa</option>
+                    <option value="TUTORIA">TUTORIA</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="tema" class="form-label">Tema</label>
+                <input type="text" id="tema" class="form-control" placeholder="Tema">
+            </div>
+            <div class="mb-3">
+                <label for="apuntesText" class="form-label">Apuntes</label>
+                <textarea id="apuntesText" class="form-control" placeholder="Apuntes"></textarea>
+            </div>
+            <button type="submit" id="send" class="btn btn-primary">Enviar</button>
+        </form>
+        <!-- div para mostrar datos -->
+        <div id="apuntes"></div>
+    </main>
+    <footer class="bg-primary text-white text-center py-3 mt-4" id="footer">
+        <p>&copy; 2025 Teacher's Hub. All rights reserved.</p>
+    </footer>
+    <!-- js -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="./apuntes.js"></script>
+</body>
+</html>
