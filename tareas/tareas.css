@@ -1,0 +1,27 @@
+body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+.card.dark-mode {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+.nav-pills .nav-link.dark-mode {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+header.dark-mode, footer.dark-mode {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+main {
+    height: 100vh;
+}
+@media screen and (max-width: 768px) {
+    .item-container{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+}
