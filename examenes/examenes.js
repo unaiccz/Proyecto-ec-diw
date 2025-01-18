@@ -13,7 +13,7 @@ const getExamenes = async () => {
                 <h2 class="card-title">${Asignatura}</h2>
                 <p class="card-text"><strong>Fecha:</strong> ${Fecha}</p>
                 <p class="card-text"><strong>Tema:</strong> ${Temas}</p>
-                <button class="btn btn-danger" onclick="deleteExamen('${element._id}')">Eliminar</button
+                <button class="btn btn-danger" onclick="deleteExamen('${element._id}')">Eliminar</button>
             </div>
         `;
         examenesDiv.appendChild(card);
