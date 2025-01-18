@@ -15,7 +15,7 @@ header.dark-mode, footer.dark-mode {
     color: #ffffff;
 }
 main {
-    height: 100vh;
+    height: 1005%
 }
 @media screen and (max-width: 768px) {
     .item-container{
