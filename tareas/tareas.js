@@ -4,20 +4,29 @@ const getTareas = async () => {
     console.log(data);
     const tareasDiv = document.getElementById('apuntes');
     tareasDiv.innerHTML = ''; // Limpiar el contenido anterior
-    data.forEach(element => {
-        const { Asignatura, Tareas, FechaLimite, DatosInteres } = element;
-        const card = document.createElement('div');
-        card.className = 'card mb-3';
-        card.innerHTML = `
-            <div class="card-body">
-                <h2 class="card-title">${Asignatura}</h2>
-                <p class="card-text"><strong>Tareas:</strong> ${Tareas}</p>
-                <p class="card-text"><strong>Fecha Límite:</strong> ${FechaLimite}</p>
-                <p class="card-text">${DatosInteres}</p>
-            </div>
-        `;
-        tareasDiv.appendChild(card);
-    });
+
+    if (data.length === 0) {
+        const alert = document.createElement('div');
+        alert.className = 'alert alert-warning';
+        alert.innerText = 'Sin datos...';
+        tareasDiv.appendChild(alert);
+    } else {
+        data.forEach(element => {
+            const { Asignatura, Tareas, FechaLimite, DatosInteres } = element;
+            const card = document.createElement('div');
+            card.className = 'card mb-3';
+            card.innerHTML = `
+                <div class="card-body">
+                    <h2 class="card-title">${Asignatura}</h2>
+                    <p class="card-text"><strong>Tareas:</strong> ${Tareas}</p>
+                    <p class="card-text"><strong>Fecha Límite:</strong> ${FechaLimite}</p>
+                    <p class="card-text">${DatosInteres}</p>
+                    <button class="btn btn-danger" onclick="deleteTarea('${element._id}')">Eliminar</button>
+                </div>
+            `;
+            tareasDiv.appendChild(card);
+        });
+    }
 }
 
 const sendTarea = async (e) => {
@@ -45,6 +54,15 @@ const sendTarea = async (e) => {
     getTareas();
 }
 
+const deleteTarea = async (id) => {
+    const res = await fetch(`http://localhost:444/api/tareas/${id}`, {
+        method: 'DELETE'
+    });
+    const json = await res.json();
+    console.log(json);
+    getTareas();
+}
+
 document.getElementById('form').addEventListener('submit', sendTarea);
 getTareas();
 
@@ -64,6 +82,9 @@ if (localStorage.getItem('theme') === 'dark') {
     document.querySelectorAll('.nav-link').forEach(link => {
         link.classList.add('dark-mode');
     });
+    document.querySelectorAll('a img').forEach(img => {
+        img.classList.add('dark-mode');
+    });
 }
 
 themeToggle.addEventListener('click', () => {
@@ -75,6 +96,9 @@ themeToggle.addEventListener('click', () => {
     });
     document.querySelectorAll('.nav-link').forEach(link => {
         link.classList.toggle('dark-mode');
+    });
+    document.querySelectorAll('a img').forEach(img => {
+        img.classList.toggle('dark-mode');
     });
 
     // Save theme to local storage
@@ -90,6 +114,9 @@ const observer = new MutationObserver(() => {
     if (document.body.classList.contains('dark-mode')) {
         document.querySelectorAll('.card').forEach(card => {
             card.classList.add('dark-mode');
+        });
+        document.querySelectorAll('a img').forEach(img => {
+            img.classList.add('dark-mode');
         });
     }
 });

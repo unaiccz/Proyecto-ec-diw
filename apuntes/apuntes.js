@@ -16,20 +16,28 @@ const getApuntes = async () => {
     console.log(data);
     const apuntesDiv = document.getElementById('apuntes');
     apuntesDiv.innerHTML = ''; // Limpiar el contenido anterior
-    data.forEach(element => {
-        const { Asignatura, Tema, Apuntes } = element;
-        const card = document.createElement('div');
-        card.className = 'card mb-3';
-        card.innerHTML = `
-            <div class="card-body">
-                <h2 class="card-title">${Asignatura}</h2>
-                <p class="card-text"><strong>Tema:</strong> ${Tema}</p>
-                <p class="card-text">${Apuntes}</p>
-                <button class="btn btn-danger" onclick="deleteApuntes('${element._id}')">Eliminar</button>
-            </div>
-        `;
-        apuntesDiv.appendChild(card);
-    });
+
+    if (data.message === 'No hay apuntes') {
+        const alert = document.createElement('div');
+        alert.className = 'alert alert-warning';
+        alert.innerText = 'Sin datos...';
+        apuntesDiv.appendChild(alert);
+    } else {
+        data.forEach(element => {
+            const { Asignatura, Tema, Apuntes } = element;
+            const card = document.createElement('div');
+            card.className = 'card mb-3';
+            card.innerHTML = `
+                <div class="card-body">
+                    <h2 class="card-title">${Asignatura}</h2>
+                    <p class="card-text"><strong>Tema:</strong> ${Tema}</p>
+                    <p class="card-text">${Apuntes}</p>
+                    <button class="btn btn-danger" onclick="deleteApuntes('${element._id}')">Eliminar</button>
+                </div>
+            `;
+            apuntesDiv.appendChild(card);
+        });
+    }
 }
 
 const sendApuntes = async (e) => {

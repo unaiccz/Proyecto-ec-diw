@@ -1,7 +1,12 @@
-main {
-    height: 100%;
+.dark-mode a img {
+    filter: brightness(0) invert(1);
 }
 
+
+footer {
+    position: absolute;
+    bottom: 0;
+}
 
 @media screen and (max-width: 768px) {
     .item-container{
@@ -10,4 +15,12 @@ main {
         align-items: center;
     }
     
+}
+main {
+    height: 100%;
+}
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }

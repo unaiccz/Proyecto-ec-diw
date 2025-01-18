@@ -4,20 +4,28 @@ const getExamenes = async () => {
     console.log(data);
     const examenesDiv = document.getElementById('examenes');
     examenesDiv.innerHTML = ''; // Limpiar el contenido anterior
-    data.forEach(element => {
-        const { Fecha, Asignatura, Temas } = element;
-        const card = document.createElement('div');
-        card.className = 'card mb-3';
-        card.innerHTML = `
-            <div class="card-body">
-                <h2 class="card-title">${Asignatura}</h2>
-                <p class="card-text"><strong>Fecha:</strong> ${Fecha}</p>
-                <p class="card-text"><strong>Tema:</strong> ${Temas}</p>
-                <button class="btn btn-danger" onclick="deleteExamen('${element._id}')">Eliminar</button>
-            </div>
-        `;
-        examenesDiv.appendChild(card);
-    });
+
+    if (data.message === 'No hay examenes' || data.length === 0) {
+        const alert = document.createElement('div');
+        alert.className = 'alert alert-warning';
+        alert.innerText = 'Sin datos...';
+        examenesDiv.appendChild(alert);
+    } else {
+        data.forEach(element => {
+            const { Fecha, Asignatura, Temas } = element;
+            const card = document.createElement('div');
+            card.className = 'card mb-3';
+            card.innerHTML = `
+                <div class="card-body">
+                    <h2 class="card-title">${Asignatura}</h2>
+                    <p class="card-text"><strong>Fecha:</strong> ${Fecha}</p>
+                    <p class="card-text"><strong>Tema:</strong> ${Temas}</p>
+                    <button class="btn btn-danger" onclick="deleteExamen('${element._id}')">Eliminar</button>
+                </div>
+            `;
+            examenesDiv.appendChild(card);
+        });
+    }
 }
 
 const sendExamen = async (e) => {
@@ -45,6 +53,7 @@ const sendExamen = async (e) => {
     console.log(json);
     getExamenes();
 }
+
 const deleteExamen = async (id) => {
     const res = await fetch(`http://localhost:444/api/examenes/${id}`, {
         method: 'DELETE'
@@ -73,6 +82,9 @@ if (localStorage.getItem('theme') === 'dark') {
     document.querySelectorAll('.nav-link').forEach(link => {
         link.classList.add('dark-mode');
     });
+    document.querySelectorAll('a img').forEach(img => {
+        img.classList.add('dark-mode');
+    });
 }
 
 themeToggle.addEventListener('click', () => {
@@ -84,6 +96,9 @@ themeToggle.addEventListener('click', () => {
     });
     document.querySelectorAll('.nav-link').forEach(link => {
         link.classList.toggle('dark-mode');
+    });
+    document.querySelectorAll('a img').forEach(img => {
+        img.classList.toggle('dark-mode');
     });
 
     // Save theme to local storage
@@ -99,6 +114,9 @@ const observer = new MutationObserver(() => {
     if (document.body.classList.contains('dark-mode')) {
         document.querySelectorAll('.card').forEach(card => {
             card.classList.add('dark-mode');
+        });
+        document.querySelectorAll('a img').forEach(img => {
+            img.classList.add('dark-mode');
         });
     }
 });
