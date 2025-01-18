@@ -14,10 +14,8 @@ header.dark-mode, footer.dark-mode {
     background-color: #1e1e1e;
     color: #ffffff;
 }
-footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
+main {
+    height: 100%;
 }
 @media screen and (max-width: 768px) {
     .item-container{
