@@ -13,6 +13,7 @@ const getExamenes = async () => {
                 <h2 class="card-title">${Asignatura}</h2>
                 <p class="card-text"><strong>Fecha:</strong> ${Fecha}</p>
                 <p class="card-text"><strong>Tema:</strong> ${Temas}</p>
+                <button class="btn btn-danger" onclick="deleteExamen('${element._id}')">Eliminar</button
             </div>
         `;
         examenesDiv.appendChild(card);
@@ -39,6 +40,14 @@ const sendExamen = async (e) => {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(data)
+    });
+    const json = await res.json();
+    console.log(json);
+    getExamenes();
+}
+const deleteExamen = async (id) => {
+    const res = await fetch(`http://localhost:444/api/examenes/${id}`, {
+        method: 'DELETE'
     });
     const json = await res.json();
     console.log(json);
