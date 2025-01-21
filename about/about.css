@@ -33,3 +33,10 @@ footer{
     }
     
 }
+main {
+    height: 100vh;
+}
+footer{
+    width: 100%;
+    position: relative;
+}

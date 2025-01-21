@@ -20,11 +20,14 @@ header.dark-mode, footer.dark-mode {
 }
 main {
     height: 100%;
+    padding-bottom: 50px; /* Ajusta este valor según la altura de tu footer */
 }
+
 footer {
-    position: absolute;
+    position: relative;
     bottom: 0;
     width: 100%;
+    height: 50px; /* Asegúrate de que este valor coincida con el padding-bottom de main */
 }
 @media screen and (max-width: 768px) {
     .item-container{

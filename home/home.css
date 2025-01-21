@@ -1,6 +1,10 @@
 .dark-mode a img {
     filter: brightness(0) invert(1);
 }
+.item-container {
+    display: flex;
+    align-items: center;
+}
 
 
 footer {
@@ -16,11 +20,7 @@ footer {
     }
     
 }
-main {
-    height: 100%;
-}
-footer {
-    position: absolute;
-    bottom: 0;
+footer{
     width: 100%;
+    position: relative;
 }
