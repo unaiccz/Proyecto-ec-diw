@@ -21,11 +21,7 @@ header.dark-mode, footer.dark-mode {
 main {
     height: 100%;
 }
-footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-}
+
 @media screen and (max-width: 768px) {
     .item-container{
         display: flex;
