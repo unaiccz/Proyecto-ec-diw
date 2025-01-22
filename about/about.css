@@ -20,25 +20,10 @@ header.dark-mode, footer.dark-mode {
 main {
     height: 100%;
 }
-footer{
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-}
-@media screen and (max-width: 768px) {
-    .item-container{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-    
-}
+
+
 main {
-    height: 100vh;
-}
-footer{
-    width: 100%;
-    position: relative;
+    height: 100%;
 }
 .item-container{
     display: flex;
@@ -51,7 +36,6 @@ margin: 0 10px;
 }
 
 
-/* From Uiverse.io by MRez321 */ 
 .theme-switch {
     position: relative;
     display: flex;
@@ -122,4 +106,11 @@ margin: 0 10px;
   #theme-checkbox + label span:last-of-type {
     color: #cecece;
   }
-  
+  @media screen and (max-width: 768px) {
+    footer{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+  }

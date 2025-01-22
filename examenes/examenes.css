@@ -21,15 +21,6 @@ main{
     height: 100vh;
 }
 @media screen and (max-width: 768px) {
-    .item-container{
-        display: flex;
-    justify-content: space-between;
-    }
-    .item2{
-        display: flex;
-    flex-direction: column;
-    margin: 0 10px;
-    }
 }
 /* From Uiverse.io by MRez321 */ 
 .theme-switch {
@@ -102,4 +93,12 @@ main{
   #theme-checkbox + label span:last-of-type {
     color: #cecece;
   }
-  
+  .item-container{
+    display: flex;
+justify-content: space-between;
+}
+.item2{
+    display: flex;
+flex-direction: column;
+margin: 0 10px;
+}
