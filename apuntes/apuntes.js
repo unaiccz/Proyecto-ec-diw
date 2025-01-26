@@ -1,5 +1,5 @@
 const deleteApuntes = async (id) => {
-    const res = await fetch(`http://localhost:444/api/apuntes/${id}`, {
+    const res = await fetch(`http://192.168.5.136:444/api/apuntes/${id}`, {
         method: 'DELETE'
     });
     const json = await res.json();
@@ -11,7 +11,7 @@ const deleteApuntes = async (id) => {
 window.deleteApuntes = deleteApuntes;
 
 const getApuntes = async () => {
-    const res = await fetch('http://localhost:444/api/apuntes');
+    const res = await fetch('http://192.168.5.136:444/api/apuntes');
     const data = await res.json();
     console.log(data);
     const apuntesDiv = document.getElementById('apuntes');
@@ -51,7 +51,7 @@ const sendApuntes = async (e) => {
         Apuntes: apuntes
     }
     document.getElementById('form').reset();
-    const res = await fetch('http://localhost:444/api/apuntes', {
+    const res = await fetch('http://192.168.5.136:444/api/apuntes', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

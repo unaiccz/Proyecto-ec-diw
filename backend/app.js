@@ -14,6 +14,6 @@ app.use(express.json()); // parse JSON bodies
 
 app.use('/api', router); // use the router
 
-app.listen(port, () => {
+app.listen(port, '192.168.5.136',  () => {
   console.log(`Server running on port ${port}`);
 });

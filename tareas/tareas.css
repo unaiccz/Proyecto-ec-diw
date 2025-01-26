@@ -20,8 +20,10 @@ header.dark-mode, footer.dark-mode {
 }
 main {
     height: 100%;
+    padding-bottom: 50px; /* Ajusta este valor según la altura de tu footer */
 }
 
+<<<<<<< HEAD
 @media screen and (max-width: 768px) {
     .item-container{
         display: flex;
@@ -32,4 +34,15 @@ main {
         position: relative;
     }
     
+=======
+.item-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+>>>>>>> 7475bcea3e63fcb22d4a3a504471619c658eda22
+}
+.items2 {
+    display: flex;
+    flex-direction: column;
+    margin: 0 10px;
 }
