@@ -17,6 +17,11 @@ footer {
     }
     
 }
+<<<<<<< HEAD
+main {
+    height: 100vh;
+}
+=======
 footer{
     width: 100%;
     position: relative;
@@ -103,3 +108,4 @@ justify-content: space-between;
 .item2 .theme-switch{
     margin: 5px 0;
 }  
+>>>>>>> 7475bcea3e63fcb22d4a3a504471619c658eda22
