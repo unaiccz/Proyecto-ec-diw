@@ -25,6 +25,9 @@ const getTareas = async () => {
                 </div>
             `;
             tareasDiv.appendChild(card);
+            if (document.body.classList.contains('dark-mode')) {
+                card.classList.add('dark-mode');
+            }
         });
     }
 }
@@ -63,62 +66,56 @@ const deleteTarea = async (id) => {
     getTareas();
 }
 
-document.getElementById('form').addEventListener('submit', sendTarea);
-getTareas();
+document.addEventListener('DOMContentLoaded', () => {
+    getTareas();
 
-// Toggle dark mode
-const header = document.getElementById('header');
-const footer = document.getElementById('footer');
-const themeToggle = document.getElementById('theme-toggle');
+    document.getElementById('form').addEventListener('submit', sendTarea);
 
-// Check local storage for theme
-if (localStorage.getItem('theme') === 'dark') {
-    document.body.classList.add('dark-mode');
-    header.classList.add('bg-dark');
-    footer.classList.add('bg-dark');
-    document.querySelectorAll('.card').forEach(card => {
-        card.classList.add('dark-mode');
-    });
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.classList.add('dark-mode');
-    });
-    document.querySelectorAll('a img').forEach(img => {
-        img.classList.add('dark-mode');
-    });
-}
+    // Toggle dark mode
+    const header = document.getElementById('header');
+    const footer = document.getElementById('footer');
+    const themeToggle = document.getElementById('theme-toggle');
 
-themeToggle.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-    header.classList.toggle('bg-dark');
-    footer.classList.toggle('bg-dark');
-    document.querySelectorAll('.card').forEach(card => {
-        card.classList.toggle('dark-mode');
-    });
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.classList.toggle('dark-mode');
-    });
-    document.querySelectorAll('a img').forEach(img => {
-        img.classList.toggle('dark-mode');
-    });
-
-    // Save theme to local storage
-    if (document.body.classList.contains('dark-mode')) {
-        localStorage.setItem('theme', 'dark');
-    } else {
-        localStorage.setItem('theme', 'light');
-    }
-});
-
-// Ensure dark mode is applied to dynamically added cards
-const observer = new MutationObserver(() => {
-    if (document.body.classList.contains('dark-mode')) {
+    // Check local storage for theme
+    if (localStorage.getItem('theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+        header.classList.add('bg-dark');
+        footer.classList.add('bg-dark');
         document.querySelectorAll('.card').forEach(card => {
             card.classList.add('dark-mode');
         });
-        document.querySelectorAll('a img').forEach(img => {
-            img.classList.add('dark-mode');
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.classList.add('dark-mode');
         });
     }
-});
 
-observer.observe(document.getElementById('apuntes'), { childList: true });
+    themeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        header.classList.toggle('bg-dark');
+        footer.classList.toggle('bg-dark');
+        document.querySelectorAll('.card').forEach(card => {
+            card.classList.toggle('dark-mode');
+        });
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.classList.toggle('dark-mode');
+        });
+
+        // Save theme to local storage
+        if (document.body.classList.contains('dark-mode')) {
+            localStorage.setItem('theme', 'dark');
+        } else {
+            localStorage.setItem('theme', 'light');
+        }
+    });
+
+    // Ensure dark mode is applied to dynamically added cards
+    const observer = new MutationObserver(() => {
+        if (document.body.classList.contains('dark-mode')) {
+            document.querySelectorAll('.card').forEach(card => {
+                card.classList.add('dark-mode');
+            });
+        }
+    });
+
+    observer.observe(document.getElementById('apuntes'), { childList: true });
+});

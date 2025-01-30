@@ -1,52 +1,27 @@
 .dark-mode a img {
-    filter: brightness(0) invert(1);
+  filter: brightness(0) invert(1);
 }
-
 body.dark-mode {
-    background-color: #121212;
-    color: #ffffff;
+  background-color: #121212;
+  color: #ffffff;
 }
 .card.dark-mode {
-    background-color: #1e1e1e;
-    color: #ffffff;
+  background-color: #1e1e1e;
+  color: #ffffff;
 }
 .nav-pills .nav-link.dark-mode {
-    background-color: #1e1e1e;
-    color: #ffffff;
+  background-color: #1e1e1e;
+  color: #ffffff;
 }
 header.dark-mode, footer.dark-mode {
-    background-color: #1e1e1e;
-    color: #ffffff;
+  background-color: #1e1e1e;
+  color: #ffffff;
 }
-main {
-    height: 100%;
-    padding-bottom: 50px; /* Ajusta este valor según la altura de tu footer */
+main{
+  height: 100vh;
 }
-
-<<<<<<< HEAD
 @media screen and (max-width: 768px) {
-    .item-container{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-    footer{
-        position: relative;
-    }
-    
-=======
-.item-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
->>>>>>> 7475bcea3e63fcb22d4a3a504471619c658eda22
 }
-.items2 {
-    display: flex;
-    flex-direction: column;
-    margin: 0 10px;
-}
-
 /* From Uiverse.io by MRez321 */ 
 .theme-switch {
   position: relative;
@@ -117,4 +92,13 @@ main {
 
 #theme-checkbox + label span:last-of-type {
   color: #cecece;
+}
+.item-container{
+  display: flex;
+justify-content: space-between;
+}
+.item2{
+  display: flex;
+flex-direction: column;
+margin: 0 10px;
 }
