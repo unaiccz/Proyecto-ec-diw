@@ -30,7 +30,6 @@ margin: 0 10px;
     display: flex;
 justify-content: space-between;
 }
-/* From Uiverse.io by MRez321 */ 
 .theme-switch {
     position: relative;
     display: flex;
@@ -101,4 +100,8 @@ justify-content: space-between;
   #theme-checkbox + label span:last-of-type {
     color: #cecece;
   }
-  
+  footer{
+    position: relative;
+    margin-top: 10px;
+  padding: 10px;
+  }

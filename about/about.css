@@ -18,7 +18,6 @@ header.dark-mode, footer.dark-mode {
     color: #ffffff;
 }
 main {
-<<<<<<< HEAD
     height: 100vh;
 }
 
@@ -31,7 +30,6 @@ main {
     main{
         height: 100%;
     }
-=======
     height: 100%;
 }
 
@@ -128,4 +126,3 @@ margin: 0 10px;
     }
     
   }
->>>>>>> 7475bcea3e63fcb22d4a3a504471619c658eda22
