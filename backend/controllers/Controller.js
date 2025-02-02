@@ -36,6 +36,21 @@ router.post('/apuntes', async (req, res) => {
   }
 });
 
+router.put('/apuntes/:id', async (req, res) => {
+  try {
+    const updatedApuntes = await Apuntes.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!updatedApuntes) {
+      res.status(404).json({ message: 'Apunte no encontrado' });
+    } else {
+      console.log('PUT /apuntes', updatedApuntes); // Log para depuración
+      res.json(updatedApuntes);
+    }
+  } catch (error) {
+    console.error('Error en PUT /apuntes:', error); // Log de error
+    res.status(500).json({ message: error.message });
+  }
+});
+
 router.delete('/apuntes/:id', async (req, res) => {
   try {
     const apuntes = await Apuntes.findByIdAndDelete(req.params.id);
@@ -75,6 +90,21 @@ router.post('/examenes', async (req, res) => {
   } catch (error) {
     console.error('Error en POST /examenes:', error); // Log de error
     res.status(400).json({ message: error.message });
+  }
+});
+
+router.put('/examenes/:id', async (req, res) => {
+  try {
+    const updatedExamenes = await Examenes.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!updatedExamenes) {
+      res.status(404).json({ message: 'Examen no encontrado' });
+    } else {
+      console.log('PUT /examenes', updatedExamenes); // Log para depuración
+      res.json(updatedExamenes);
+    }
+  } catch (error) {
+    console.error('Error en PUT /examenes:', error); // Log de error
+    res.status(500).json({ message: error.message });
   }
 });
 
@@ -118,6 +148,21 @@ router.post('/tareas', async (req, res) => {
   } catch (error) {
     console.error('Error en POST /tareas:', error); // Log de error
     res.status(400).json({ message: error.message });
+  }
+});
+
+router.put('/tareas/:id', async (req, res) => {
+  try {
+    const updatedTareas = await Tareas.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!updatedTareas) {
+      res.status(404).json({ message: 'Tarea no encontrada' });
+    } else {
+      console.log('PUT /tareas', updatedTareas); // Log para depuración
+      res.json(updatedTareas);
+    }
+  } catch (error) {
+    console.error('Error en PUT /tareas:', error); // Log de error
+    res.status(500).json({ message: error.message });
   }
 });
 
