@@ -1,5 +1,5 @@
 const getExamenes = async () => {
-    const res = await fetch('http://192.168.5.136:444/api/examenes');
+    const res = await fetch('http://localhost:444/api/examenes');
     const data = await res.json();
     console.log(data);
     const examenesDiv = document.getElementById('examenes');
@@ -42,7 +42,7 @@ const sendExamen = async (e) => {
         Temas: tema
     }
     document.getElementById('form').reset();
-    const res = await fetch('http://192.168.5.136:444/api/examenes', {
+    const res = await fetch('http://localhost:444/api/examenes', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -55,7 +55,7 @@ const sendExamen = async (e) => {
 }
 
 const deleteExamen = async (id) => {
-    const res = await fetch(`http://192.168.5.136:444/api/examenes/${id}`, {
+    const res = await fetch(`http://localhost:444/api/examenes/${id}`, {
         method: 'DELETE'
     });
     const json = await res.json();

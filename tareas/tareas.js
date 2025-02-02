@@ -1,5 +1,5 @@
 const getTareas = async () => {
-    const res = await fetch('http://192.168.5.136:444/api/tareas');
+    const res = await fetch('http://localhost:444/api/tareas');
     const data = await res.json();
     console.log(data);
     const tareasDiv = document.getElementById('apuntes');
@@ -45,7 +45,7 @@ const sendTarea = async (e) => {
         DatosInteres: datosInteres
     }
     document.getElementById('form').reset();
-    const res = await fetch('http://192.168.5.136:444/api/tareas', {
+    const res = await fetch('http://localhost:444/api/tareas', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -58,7 +58,7 @@ const sendTarea = async (e) => {
 }
 
 const deleteTarea = async (id) => {
-    const res = await fetch(`http://192.168.5.136:444/api/tareas/${id}`, {
+    const res = await fetch(`http://localhost:444/api/tareas/${id}`, {
         method: 'DELETE'
     });
     const json = await res.json();

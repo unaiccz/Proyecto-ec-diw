@@ -21,8 +21,10 @@ main{
   height: 100vh;
 }
 @media screen and (max-width: 768px) {
+  main{
+    height: 100%;
+  }
 }
-/* From Uiverse.io by MRez321 */ 
 .theme-switch {
   position: relative;
   display: flex;

@@ -1,3 +1,4 @@
+
 .dark-mode a img {
     filter: brightness(0) invert(1);
 }
@@ -19,7 +20,7 @@ header.dark-mode, footer.dark-mode {
     color: #ffffff;
 }
 main{
-    height: 100vh;
+  height: 100vh;
 }
 .item2{
     display: flex;
@@ -100,8 +101,9 @@ justify-content: space-between;
   #theme-checkbox + label span:last-of-type {
     color: #cecece;
   }
-  footer{
-    position: relative;
-    margin-top: 10px;
-  padding: 10px;
-  }
+@media screen and (max-width: 768px) {
+  main{
+    height: 100%;
+}
+  
+}
