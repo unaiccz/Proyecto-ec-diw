@@ -1,15 +1,4 @@
-const deleteApuntes = async (id) => {
-    const res = await fetch(`http://localhost:444/api/apuntes/${id}`, {
-        method: 'DELETE'
-    });
-    const json = await res.json();
-    console.log(json);
-    getApuntes();
-}
-
-// Hacer que la función esté disponible globalmente
-window.deleteApuntes = deleteApuntes;
-
+// Función para obtener todos los apuntes
 const getApuntes = async () => {
     const res = await fetch('http://localhost:444/api/apuntes');
     const data = await res.json();
@@ -33,6 +22,7 @@ const getApuntes = async () => {
                     <p class="card-text"><strong>Tema:</strong> ${Tema}</p>
                     <p class="card-text">${Apuntes}</p>
                     <button class="btn btn-danger" onclick="deleteApuntes('${element._id}')">Eliminar</button>
+                    <button class="btn btn-warning" onclick="openEditModal('${element._id}', '${Asignatura}', '${Tema}', '${Apuntes}')">Editar</button>
                 </div>
             `;
             apuntesDiv.appendChild(card);
@@ -40,6 +30,17 @@ const getApuntes = async () => {
     }
 }
 
+// Función para eliminar un apunte
+const deleteApuntes = async (id) => {
+    const res = await fetch(`http://localhost:444/api/apuntes/${id}`, {
+        method: 'DELETE'
+    });
+    const json = await res.json();
+    console.log(json);
+    getApuntes();
+}
+
+// Función para enviar nuevos apuntes
 const sendApuntes = async (e) => {
     e.preventDefault();
     const asignatura = document.getElementById('asignatura').value;
@@ -63,15 +64,52 @@ const sendApuntes = async (e) => {
     getApuntes();
 }
 
-document.getElementById('form').addEventListener('submit', sendApuntes);
-getApuntes();
+// Función para editar apuntes (abrir el modal con datos cargados)
+const openEditModal = (id, asignatura, tema, apuntes) => {
+    document.getElementById('editId').value = id;
+    document.getElementById('editAsignatura').value = asignatura;
+    document.getElementById('editTema').value = tema;
+    document.getElementById('editApuntes').value = apuntes;
+    $('#editModal').modal('show');  // Mostrar el modal usando Bootstrap
+}
 
-// Toggle dark mode
+// Función para actualizar apuntes
+const updateApuntes = async (e) => {
+    e.preventDefault();
+    const id = document.getElementById('editId').value;
+    const asignatura = document.getElementById('editAsignatura').value;
+    const tema = document.getElementById('editTema').value;
+    const apuntes = document.getElementById('editApuntes').value;
+    const data = {
+        Asignatura: asignatura,
+        Tema: tema,
+        Apuntes: apuntes
+    }
+    const res = await fetch(`http://localhost:444/api/apuntes/${id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    });
+    const json = await res.json();
+    console.log(json);
+    getApuntes();
+    $('#editModal').modal('hide');  // Ocultar el modal
+}
+
+// Evento para enviar apuntes
+document.getElementById('form').addEventListener('submit', sendApuntes);
+
+// Evento para actualizar apuntes desde el modal
+document.getElementById('editForm').addEventListener('submit', updateApuntes);
+
+// Función para manejar el tema oscuro (Dark Mode)
 const header = document.getElementById('header');
 const footer = document.getElementById('footer');
 const themeToggle = document.getElementById('theme-toggle');
 
-// Check local storage for theme
+// Verificar tema guardado en localStorage
 if (localStorage.getItem('theme') === 'dark') {
     document.body.classList.add('dark-mode');
     header.classList.add('bg-dark');
@@ -95,7 +133,7 @@ themeToggle.addEventListener('click', () => {
         link.classList.toggle('dark-mode');
     });
 
-    // Save theme to local storage
+    // Guardar la preferencia del tema en localStorage
     if (document.body.classList.contains('dark-mode')) {
         localStorage.setItem('theme', 'dark');
     } else {
@@ -103,7 +141,7 @@ themeToggle.addEventListener('click', () => {
     }
 });
 
-// Ensure dark mode is applied to dynamically added cards
+// Asegurarse de que las nuevas tarjetas también usen el tema oscuro si es necesario
 const observer = new MutationObserver(() => {
     if (document.body.classList.contains('dark-mode')) {
         document.querySelectorAll('.card').forEach(card => {
@@ -113,3 +151,6 @@ const observer = new MutationObserver(() => {
 });
 
 observer.observe(document.getElementById('apuntes'), { childList: true });
+
+// Obtener apuntes al cargar la página
+getApuntes();
