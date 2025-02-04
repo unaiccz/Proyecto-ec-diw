@@ -20,8 +20,7 @@ header.dark-mode, footer.dark-mode {
 main{
   height: 100vh;
 }
-@media screen and (max-width: 768px) {
-}
+
 .theme-switch {
   position: relative;
   display: flex;

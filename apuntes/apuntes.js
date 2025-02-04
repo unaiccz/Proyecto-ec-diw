@@ -16,13 +16,16 @@ const getApuntes = async () => {
     apuntesDiv.innerHTML = ''; // Limpiar el contenido anterior
 
     if (data.message === 'No hay apuntes') {
+const main = document.getElementById('mainid');
+main.classList.toggle('d-none');
         const alert = document.createElement('div');
         alert.className = 'alert alert-warning';
         alert.innerText = 'Sin datos...';
+        alert.classList.add('alertview');
         apuntesDiv.appendChild(alert);
     } else {
         data.forEach(element => {
-            const { Asignatura, Tema, Apuntes } = element;
+            const { _id, Asignatura, Tema, Apuntes } = element;
             const card = document.createElement('div');
             card.className = 'card mb-3';
             card.innerHTML = `
@@ -30,8 +33,13 @@ const getApuntes = async () => {
                     <h2 class="card-title">${Asignatura}</h2>
                     <p class="card-text"><strong>Tema:</strong> ${Tema}</p>
                     <p class="card-text">${Apuntes}</p>
+<<<<<<< HEAD
                     <button class="btn btn-danger" onclick="deleteApuntes('${element._id}')">Eliminar</button>
                     <button class="btn btn-warning" onclick="openEditModal('${element._id}', '${Asignatura}', '${Tema}', '${Apuntes}')">Editar</button>
+=======
+                    <button class="btn btn-danger" onclick="deleteApuntes('${_id}')">Eliminar</button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onclick="editApunte('${_id}', '${Asignatura}', '${Tema}', '${Apuntes}')">Editar</button>
+>>>>>>> 70a60a87bb00fcc2f30a99aab56a6bf5c9f630f7
                 </div>
             `;
             apuntesDiv.appendChild(card);
@@ -63,6 +71,7 @@ const sendApuntes = async (e) => {
     getApuntes();
 }
 
+<<<<<<< HEAD
 // Función para editar apuntes (abrir el modal con datos cargados)
 const openEditModal = (id, asignatura, tema, apuntes) => {
     document.getElementById('editId').value = id;
@@ -71,6 +80,48 @@ const openEditModal = (id, asignatura, tema, apuntes) => {
     document.getElementById('editApuntes').value = apuntes;
     $('#editModal').modal('show');  // Mostrar el modal usando Bootstrap
 }
+=======
+const editApunte = (id, asignatura, tema, apuntes) => {
+    document.getElementById('modal-id').value = id;
+    document.getElementById('modal-asignatura').value = asignatura;
+    document.getElementById('modal-tema').value = tema;
+    document.getElementById('modal-apuntes').value = apuntes;
+}
+
+// Hacer que la función esté disponible globalmente
+window.editApunte = editApunte;
+
+const updateApunte = async () => {
+    const id = document.getElementById('modal-id').value;
+    const asignatura = document.getElementById('modal-asignatura').value;
+    const tema = document.getElementById('modal-tema').value;
+    const apuntes = document.getElementById('modal-apuntes').value;
+
+    const data = {
+        Asignatura: asignatura,
+        Tema: tema,
+        Apuntes: apuntes
+    }
+
+    const res = await fetch(`http://localhost:444/api/apuntes/${id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    });
+    const json = await res.json();
+    console.log(json);
+    getApuntes();
+    $('#exampleModal').modal('hide');
+}
+
+// Hacer que la función esté disponible globalmente
+window.updateApunte = updateApunte;
+
+document.getElementById('form').addEventListener('submit', sendApuntes);
+getApuntes();
+>>>>>>> 70a60a87bb00fcc2f30a99aab56a6bf5c9f630f7
 
 // Función para actualizar apuntes
 const updateApuntes = async (e) => {
