@@ -1,3 +1,12 @@
+const deleteApuntes = async (id) => {
+    const res = await fetch(`http://localhost:444/api/apuntes/${id}`, {
+        method: 'DELETE'
+    });
+    const json = await res.json();
+    console.log(json);
+    getApuntes();
+}
+
 // Función para obtener todos los apuntes
 const getApuntes = async () => {
     const res = await fetch('http://localhost:444/api/apuntes');
@@ -28,16 +37,6 @@ const getApuntes = async () => {
             apuntesDiv.appendChild(card);
         });
     }
-}
-
-// Función para eliminar un apunte
-const deleteApuntes = async (id) => {
-    const res = await fetch(`http://localhost:444/api/apuntes/${id}`, {
-        method: 'DELETE'
-    });
-    const json = await res.json();
-    console.log(json);
-    getApuntes();
 }
 
 // Función para enviar nuevos apuntes
