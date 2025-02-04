@@ -12,7 +12,7 @@ const getExamenes = async () => {
         examenesDiv.appendChild(alert);
     } else {
         data.forEach(element => {
-            const { Fecha, Asignatura, Temas } = element;
+            const { _id, Fecha, Asignatura, Temas } = element;
             const card = document.createElement('div');
             card.className = 'card mb-3';
             card.innerHTML = `
@@ -20,7 +20,8 @@ const getExamenes = async () => {
                     <h2 class="card-title">${Asignatura}</h2>
                     <p class="card-text"><strong>Fecha:</strong> ${Fecha}</p>
                     <p class="card-text"><strong>Tema:</strong> ${Temas}</p>
-                    <button class="btn btn-danger" onclick="deleteExamen('${element._id}')">Eliminar</button>
+                    <button class="btn btn-danger" onclick="deleteExamen('${_id}')">Eliminar</button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onclick="editExamen('${_id}', '${Fecha}', '${Asignatura}', '${Temas}')">Editar</button>
                 </div>
             `;
             examenesDiv.appendChild(card);
@@ -63,9 +64,40 @@ const deleteExamen = async (id) => {
     getExamenes();
 }
 
+const editExamen = (id, fecha, asignatura, temas) => {
+    document.getElementById('modal-id').value = id;
+    document.getElementById('modal-fecha').value = fecha;
+    document.getElementById('modal-asignatura').value = asignatura;
+    document.getElementById('modal-tema').value = temas;
+}
+
+const updateExamen = async () => {
+    const id = document.getElementById('modal-id').value;
+    const fecha = document.getElementById('modal-fecha').value;
+    const asignatura = document.getElementById('modal-asignatura').value;
+    const temas = document.getElementById('modal-tema').value;
+
+    const data = {
+        Fecha: fecha,
+        Asignatura: asignatura,
+        Temas: temas
+    }
+
+    const res = await fetch(`http://localhost:444/api/examenes/${id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    });
+    const json = await res.json();
+    console.log(json);
+    getExamenes();
+    $('#exampleModal').modal('hide');
+}
+
 document.getElementById('form').addEventListener('submit', sendExamen);
 getExamenes();
-
 // Toggle dark mode
 const header = document.getElementById('header');
 const footer = document.getElementById('footer');
