@@ -18,9 +18,12 @@ const getApuntes = async () => {
     apuntesDiv.innerHTML = ''; // Limpiar el contenido anterior
 
     if (data.message === 'No hay apuntes') {
+const main = document.getElementById('mainid');
+main.classList.toggle('d-none');
         const alert = document.createElement('div');
         alert.className = 'alert alert-warning';
         alert.innerText = 'Sin datos...';
+        alert.classList.add('alertview');
         apuntesDiv.appendChild(alert);
     } else {
         data.forEach(element => {

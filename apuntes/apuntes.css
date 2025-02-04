@@ -20,7 +20,7 @@ header.dark-mode, footer.dark-mode {
     color: #ffffff;
 }
 main{
-  height: 100vh;
+  height: 100%;
 }
 .item2{
     display: flex;
@@ -101,9 +101,6 @@ justify-content: space-between;
   #theme-checkbox + label span:last-of-type {
     color: #cecece;
   }
-@media screen and (max-width: 768px) {
-  main{
-    height: 100%;
-}
-  
+main.d-none{
+  height: 100vw;
 }
