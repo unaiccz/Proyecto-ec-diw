@@ -49,11 +49,8 @@ router.put('/apuntes/:id', async (req, res) => {
     }
   } catch (error) {
     console.error('Error en PUT /apuntes:', error); // Log de error
-<<<<<<< HEAD
     res.status(500).json({ message: error.message });
-=======
     res.status(400).json({ message: error.message });
->>>>>>> 70a60a87bb00fcc2f30a99aab56a6bf5c9f630f7
   }
 });
 
@@ -110,11 +107,8 @@ router.put('/examenes/:id', async (req, res) => {
     }
   } catch (error) {
     console.error('Error en PUT /examenes:', error); // Log de error
-<<<<<<< HEAD
     res.status(500).json({ message: error.message });
-=======
     res.status(400).json({ message: error.message });
->>>>>>> 70a60a87bb00fcc2f30a99aab56a6bf5c9f630f7
   }
 });
 
@@ -172,11 +166,8 @@ router.put('/tareas/:id', async (req, res) => {
     }
   } catch (error) {
     console.error('Error en PUT /tareas:', error); // Log de error
-<<<<<<< HEAD
     res.status(500).json({ message: error.message });
-=======
     res.status(400).json({ message: error.message });
->>>>>>> 70a60a87bb00fcc2f30a99aab56a6bf5c9f630f7
   }
 });
 
