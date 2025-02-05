@@ -30,8 +30,8 @@ const getApuntes = async () => {
                     <h2 class="card-title">${Asignatura}</h2>
                     <p class="card-text"><strong>Tema:</strong> ${Tema}</p>
                     <p class="card-text">${Apuntes}</p>
-                    <button class="btn btn-danger" onclick="deleteApuntes('${_id}')">Eliminar</button>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onclick="editApunte('${_id}', '${Asignatura}', '${Tema}', '${Apuntes}')">Editar</button>
+                    <button class="btn btn-danger" onclick="deleteApuntes('${element._id}')">Eliminar</button>
+                    <button class="btn btn-warning" onclick="openEditModal('${element._id}', '${Asignatura}', '${Tema}', '${Apuntes}')">Editar</button>
                 </div>
             `;
             apuntesDiv.appendChild(card);
@@ -63,46 +63,14 @@ const sendApuntes = async (e) => {
     getApuntes();
 }
 
-const editApunte = (id, asignatura, tema, apuntes) => {
-    document.getElementById('modal-id').value = id;
-    document.getElementById('modal-asignatura').value = asignatura;
-    document.getElementById('modal-tema').value = tema;
-    document.getElementById('modal-apuntes').value = apuntes;
+// Función para editar apuntes (abrir el modal con datos cargados)
+const openEditModal = (id, asignatura, tema, apuntes) => {
+    document.getElementById('editId').value = id;
+    document.getElementById('editAsignatura').value = asignatura;
+    document.getElementById('editTema').value = tema;
+    document.getElementById('editApuntes').value = apuntes;
+    $('#editModal').modal('show');  // Mostrar el modal usando Bootstrap
 }
-
-// Hacer que la función esté disponible globalmente
-window.editApunte = editApunte;
-
-const updateApunte = async () => {
-    const id = document.getElementById('modal-id').value;
-    const asignatura = document.getElementById('modal-asignatura').value;
-    const tema = document.getElementById('modal-tema').value;
-    const apuntes = document.getElementById('modal-apuntes').value;
-
-    const data = {
-        Asignatura: asignatura,
-        Tema: tema,
-        Apuntes: apuntes
-    }
-
-    const res = await fetch(`http://localhost:444/api/apuntes/${id}`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    });
-    const json = await res.json();
-    console.log(json);
-    getApuntes();
-    $('#exampleModal').modal('hide');
-}
-
-// Hacer que la función esté disponible globalmente
-window.updateApunte = updateApunte;
-
-document.getElementById('form').addEventListener('submit', sendApuntes);
-getApuntes();
 
 // Función para actualizar apuntes
 const updateApuntes = async (e) => {
