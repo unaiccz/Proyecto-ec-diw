@@ -80,7 +80,51 @@
     <footer class="bg-primary text-white text-center py-3 mt-4" id="footer">
         <p>&copy; 2025 Teacher's Hub. All rights reserved.</p>
     </footer>
+    <!-- Modal para editar examen -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="editModalLabel">Editar Examen</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+              <form id="editForm">
+                  <div class="mb-3">
+                      <label for="editFecha" class="form-label">Fecha</label>
+                      <input type="date" id="editFecha" class="form-control">
+                  </div>
+                  <div class="mb-3">
+                      <label for="editAsignatura" class="form-label">Asignatura</label>
+                      <select id="editAsignatura" class="form-select">
+                          <option value="E_cliente">E_cliente</option>
+                          <option value="E_servidor">E_servidor</option>
+                          <option value="Entornos_desarrollo">Entornos_desarrollo</option>
+                          <option value="Ingles">Ingles</option>
+                          <option value="dIw">dIw</option>
+                          <option value="Empresa">Empresa</option>
+                          <option value="TUTORIA">TUTORIA</option>
+                      </select>
+                  </div>
+                  <div class="mb-3">
+                      <label for="editTema" class="form-label">Tema</label>
+                      <input type="text" id="editTema" class="form-control">
+                  </div>
+                  <input type="hidden" id="editExamenId">
+                  <button type="submit" class="btn btn-primary">Actualizar</button>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
+
     <!-- js -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+<script type="module" src="./examenes.js"></script>
+
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

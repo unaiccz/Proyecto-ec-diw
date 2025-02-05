@@ -12,22 +12,85 @@ const getExamenes = async () => {
         examenesDiv.appendChild(alert);
     } else {
         data.forEach(element => {
+<<<<<<< HEAD
+            const { Fecha, Asignatura, Temas, _id } = element;
+=======
             const { _id, Fecha, Asignatura, Temas } = element;
+>>>>>>> 70a60a87bb00fcc2f30a99aab56a6bf5c9f630f7
             const card = document.createElement('div');
             card.className = 'card mb-3';
+            card.id = _id;  // Agregar el ID al card
             card.innerHTML = `
                 <div class="card-body">
+<<<<<<< HEAD
+                    <h2 class="card-title examen-asignatura">${Asignatura}</h2>
+                    <p class="card-text examen-fecha"><strong>Fecha:</strong> ${Fecha}</p>
+                    <p class="card-text examen-tema"><strong>Tema:</strong> ${Temas}</p>
+                    <button class="btn btn-danger" onclick="deleteExamen('${_id}')">Eliminar</button>
+                    <button class="btn btn-warning" onclick="openEditModal('${_id}')">Editar</button>
+=======
                     <h2 class="card-title">${Asignatura}</h2>
                     <p class="card-text"><strong>Fecha:</strong> ${Fecha}</p>
                     <p class="card-text"><strong>Tema:</strong> ${Temas}</p>
                     <button class="btn btn-danger" onclick="deleteExamen('${_id}')">Eliminar</button>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onclick="editExamen('${_id}', '${Fecha}', '${Asignatura}', '${Temas}')">Editar</button>
+>>>>>>> 70a60a87bb00fcc2f30a99aab56a6bf5c9f630f7
                 </div>
             `;
             examenesDiv.appendChild(card);
         });
     }
 }
+
+// Función para abrir el modal de edición
+const openEditModal = (id) => {
+    const examen = document.getElementById(id); // Obtener el examen usando el ID
+
+    // Obtener los valores actuales del examen
+    const fecha = examen.querySelector('.examen-fecha').innerText;
+    const asignatura = examen.querySelector('.examen-asignatura').innerText;
+    const tema = examen.querySelector('.examen-tema').innerText;
+
+    // Llenar el formulario del modal con los datos del examen
+    document.getElementById('editFecha').value = fecha.split(': ')[1]; // Obtener solo la fecha
+    document.getElementById('editAsignatura').value = asignatura;
+    document.getElementById('editTema').value = tema;
+    document.getElementById('editExamenId').value = id;
+
+    // Mostrar el modal
+    $('#editModal').modal('show');
+};
+
+// Función para enviar los datos del examen actualizado
+const updateExamen = async (e) => {
+    e.preventDefault();
+
+    const id = document.getElementById('editExamenId').value;
+    const fecha = document.getElementById('editFecha').value;
+    const asignatura = document.getElementById('editAsignatura').value;
+    const tema = document.getElementById('editTema').value;
+
+    const data = {
+        Fecha: fecha,
+        Asignatura: asignatura,
+        Temas: tema
+    }
+
+    const res = await fetch(`http://localhost:444/api/examenes/${id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    });
+    
+    const json = await res.json();
+    console.log(json);
+    getExamenes();  // Recargar los exámenes después de actualizar
+    $('#editModal').modal('hide');  // Cerrar el modal
+}
+
+document.getElementById('editForm').addEventListener('submit', updateExamen);
 
 const sendExamen = async (e) => {
     console.log('Enviando examen');
