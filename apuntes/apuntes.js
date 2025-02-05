@@ -30,13 +30,8 @@ const getApuntes = async () => {
                     <h2 class="card-title">${Asignatura}</h2>
                     <p class="card-text"><strong>Tema:</strong> ${Tema}</p>
                     <p class="card-text">${Apuntes}</p>
-<<<<<<< HEAD
-                    <button class="btn btn-danger" onclick="deleteApuntes('${element._id}')">Eliminar</button>
-                    <button class="btn btn-warning" onclick="openEditModal('${element._id}', '${Asignatura}', '${Tema}', '${Apuntes}')">Editar</button>
-=======
                     <button class="btn btn-danger" onclick="deleteApuntes('${_id}')">Eliminar</button>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onclick="editApunte('${_id}', '${Asignatura}', '${Tema}', '${Apuntes}')">Editar</button>
->>>>>>> 70a60a87bb00fcc2f30a99aab56a6bf5c9f630f7
                 </div>
             `;
             apuntesDiv.appendChild(card);
@@ -68,16 +63,6 @@ const sendApuntes = async (e) => {
     getApuntes();
 }
 
-<<<<<<< HEAD
-// Función para editar apuntes (abrir el modal con datos cargados)
-const openEditModal = (id, asignatura, tema, apuntes) => {
-    document.getElementById('editId').value = id;
-    document.getElementById('editAsignatura').value = asignatura;
-    document.getElementById('editTema').value = tema;
-    document.getElementById('editApuntes').value = apuntes;
-    $('#editModal').modal('show');  // Mostrar el modal usando Bootstrap
-}
-=======
 const editApunte = (id, asignatura, tema, apuntes) => {
     document.getElementById('modal-id').value = id;
     document.getElementById('modal-asignatura').value = asignatura;
@@ -118,7 +103,6 @@ window.updateApunte = updateApunte;
 
 document.getElementById('form').addEventListener('submit', sendApuntes);
 getApuntes();
->>>>>>> 70a60a87bb00fcc2f30a99aab56a6bf5c9f630f7
 
 // Función para actualizar apuntes
 const updateApuntes = async (e) => {
