@@ -17,13 +17,10 @@ const getApuntes = async () => {
     const apuntesDiv = document.getElementById('apuntes');
     apuntesDiv.innerHTML = ''; // Limpiar el contenido anterior
 
-    if (data.message === 'No hay apuntes') {
-const main = document.getElementById('mainid');
-main.classList.toggle('d-none');
+    if (data.message === 'No hay apuntes' || data.length === 0) {
         const alert = document.createElement('div');
         alert.className = 'alert alert-warning';
         alert.innerText = 'Sin datos...';
-        alert.classList.add('alertview');
         apuntesDiv.appendChild(alert);
     } else {
         data.forEach(element => {

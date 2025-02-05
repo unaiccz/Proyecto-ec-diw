@@ -1,6 +1,8 @@
 import Apuntes from '../models/Apuntes.js';
 import Examenes from '../models/Examenes.js';
 import Tareas from '../models/Tareas.js';
+import Reuniones from '../models/Reuniones.js';
+import Excursiones from '../models/Excursiones.js';
 import { Router } from 'express';
 
 const router = Router();
@@ -177,6 +179,124 @@ router.delete('/tareas/:id', async (req, res) => {
     }
   } catch (error) {
     console.error('Error en DELETE /tareas:', error); // Log de error
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// Endpoints para Reuniones
+router.get('/reuniones', async (req, res) => {
+  try {
+    const reuniones = await Reuniones.find();
+    console.log('GET /reuniones', reuniones); // Log para depuración
+    res.json(reuniones);
+  } catch (error) {
+    console.error('Error en GET /reuniones:', error); // Log de error
+    res.status(500).json({ message: error.message });
+  }
+});
+
+router.post('/reuniones', async (req, res) => {
+  const reuniones = new Reuniones({
+Fecha: req.body.Fecha,
+Clase : req.body.Clase,
+Alumno: req.body.Alumno,
+Anotaciones: req.body.Anotaciones
+  });
+  try {
+    const newReuniones = await reuniones.save();
+    console.log('POST /reuniones', newReuniones); // Log para depuración
+    res.status(201).json(newReuniones);
+  } catch (error) {
+    console.error('Error en POST /reuniones:', error); // Log de error
+    res.status(400).json({ message: error.message });
+  }
+});
+
+router.put('/reuniones/:id', async (req, res) => {
+  try {
+    const updatedReuniones = await Reuniones.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!updatedReuniones) {
+      res.status(404).json({ message: 'Reunión no encontrada' });
+    } else {
+      console.log('PUT /reuniones', updatedReuniones); // Log para depuración
+      res.json(updatedReuniones);
+    }
+  } catch (error) {
+    console.error('Error en PUT /reuniones:', error); // Log de error
+    res.status(400).json({ message: error.message });
+  }
+});
+
+router.delete('/reuniones/:id', async (req, res) => {
+  try {
+    const reuniones = await Reuniones.findByIdAndDelete(req.params.id);
+    if (!reuniones) {
+      res.status(404).json({ message: 'Reunión no encontrada' });
+    } else {
+      console.log('DELETE /reuniones', reuniones); // Log para depuración
+      res.json({ message: 'Reunión eliminada' });
+    }
+  } catch (error) {
+    console.error('Error en DELETE /reuniones:', error); // Log de error
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// Endpoints para Excursiones
+router.get('/excursiones', async (req, res) => {
+  try {
+    const excursiones = await Excursiones.find();
+    console.log('GET /excursiones', excursiones); // Log para depuración
+    res.json(excursiones);
+  } catch (error) {
+    console.error('Error en GET /excursiones:', error); // Log de error
+    res.status(500).json({ message: error.message });
+  }
+});
+
+router.post('/excursiones', async (req, res) => {
+  const excursiones = new Excursiones({
+    Destino: req.body.Destino,
+    Fecha: req.body.Fecha,
+    Enseres: req.body.Enseres,
+    Asistencia: req.body.Asistencia,
+  });
+  try {
+    const newExcursiones = await excursiones.save();
+    console.log('POST /excursiones', newExcursiones); // Log para depuración
+    res.status(201).json(newExcursiones);
+  } catch (error) {
+    console.error('Error en POST /excursiones:', error); // Log de error
+    res.status(400).json({ message: error.message });
+  }
+});
+
+router.put('/excursiones/:id', async (req, res) => {
+  try {
+    const updatedExcursiones = await Excursiones.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!updatedExcursiones) {
+      res.status(404).json({ message: 'Excursión no encontrada' });
+    } else {
+      console.log('PUT /excursiones', updatedExcursiones); // Log para depuración
+      res.json(updatedExcursiones);
+    }
+  } catch (error) {
+    console.error('Error en PUT /excursiones:', error); // Log de error
+    res.status(400).json({ message: error.message });
+  }
+});
+
+router.delete('/excursiones/:id', async (req, res) => {
+  try {
+    const excursiones = await Excursiones.findByIdAndDelete(req.params.id);
+    if (!excursiones) {
+      res.status(404).json({ message: 'Excursión no encontrada' });
+    } else {
+      console.log('DELETE /excursiones', excursiones); // Log para depuración
+      res.json({ message: 'Excursión eliminada' });
+    }
+  } catch (error) {
+    console.error('Error en DELETE /excursiones:', error); // Log de error
     res.status(500).json({ message: error.message });
   }
 });
