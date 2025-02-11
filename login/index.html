@@ -13,19 +13,22 @@
     </header>
     <main class="d-flex justify-content-center align-items-center vh-100">
         <div class="card p-4" style="max-width: 400px; width: 100%;">
-            <form action="validar.php" method="post" class="login-form">
-                <h1 class="form-title mb-4">Login</h1>
-                <div class="form-group">
-                    <input type="text" placeholder="Usuario" name="user" class="form-control">
-                </div>
-                <div class="form-group">
-                    <input type="password" placeholder="Contraseña" name="password" class="form-control">
-                </div>
-                <button type="submit" class="btn btn-primary btn-block">Ingresar</button>
-                <a href="#">Registrarse</a>
-            </form> 
+            <h1 class="form-title mb-4 text-center">Login</h1>
+            <div class="form-group">
+                <input type="email" placeholder="Correo" id="email" class="form-control">
+            </div>
+            <div class="form-group">
+                <input type="password" placeholder="Contraseña" id="password" class="form-control">
+            </div>
+            <button onclick="login()" class="btn btn-primary btn-block">Ingresar</button>
+            <button onclick="register()" class="btn btn-secondary btn-block">Registrarse</button>
+            <button onclick="logout()" class="btn btn-danger btn-block">Cerrar Sesión</button>
+            <p id="user-info" class="text-center mt-3"></p>
         </div>
     </main>
+
+    <!-- Firebase y Script -->
+    <script type="module" src="script.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
