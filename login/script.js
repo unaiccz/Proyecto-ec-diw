@@ -25,12 +25,12 @@ window.login = function() {
     signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
 localStorage.setItem('email', userCredential.user.email);
+window.location.href = "../home/index.html";
+
         })
         .catch((error) => {
             alert("Error: " + error.message);
         });
-        window.location.href = "../home/index.html";
-
 };
 
 // Función de Registro

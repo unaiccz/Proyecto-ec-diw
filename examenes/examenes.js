@@ -1,3 +1,10 @@
+const user = document.getElementById('user');
+let user_email = localStorage.getItem('email');
+    if (user_email) {
+        user.innerHTML = user_email;
+    } else {
+        user.innerHTML = 'Usuario';
+    }
 const getExamenes = async () => {
     const res = await fetch('http://localhost:444/api/examenes');
     const data = await res.json();

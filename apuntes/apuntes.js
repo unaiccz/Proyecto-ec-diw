@@ -1,3 +1,10 @@
+const user = document.getElementById('user');
+let user_email = localStorage.getItem('email');
+    if (user_email) {
+        user.innerHTML = user_email;
+    } else {
+        user.innerHTML = 'Usuario';
+    }
 const deleteApuntes = async (id) => {
     try {
         const res = await fetch(`http://localhost:444/api/apuntes/${id}`, {
