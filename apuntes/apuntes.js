@@ -1,30 +1,33 @@
 const deleteApuntes = async (id) => {
-    const res = await fetch(`http://localhost:444/api/apuntes/${id}`, {
-        method: 'DELETE'
-    });
-    const json = await res.json();
-    console.log(json);
-    getApuntes();
-}
+    try {
+        const res = await fetch(`http://localhost:444/api/apuntes/${id}`, {
+            method: 'DELETE'
+        });
+        if (!res.ok) throw new Error('Error al eliminar apunte');
+        getApuntes();
+    } catch (error) {
+        console.error('Hubo un problema con la eliminación:', error);
+    }
+};
 
-// Hacer que la función esté disponible globalmente
 window.deleteApuntes = deleteApuntes;
 
 const getApuntes = async () => {
-    const res = await fetch('http://localhost:444/api/apuntes');
-    const data = await res.json();
-    console.log(data);
     const apuntesDiv = document.getElementById('apuntes');
-    apuntesDiv.innerHTML = ''; // Limpiar el contenido anterior
+    apuntesDiv.innerHTML = '<p>Cargando...</p>';
 
-    if (data.message === 'No hay apuntes' || data.length === 0) {
-        const alert = document.createElement('div');
-        alert.className = 'alert alert-warning';
-        alert.innerText = 'Sin datos...';
-        apuntesDiv.appendChild(alert);
-    } else {
-        data.forEach(element => {
-            const { _id, Asignatura, Tema, Apuntes } = element;
+    try {
+        const res = await fetch('http://localhost:444/api/apuntes');
+        if (!res.ok) throw new Error('No se pudieron obtener los apuntes');
+        const data = await res.json();
+        apuntesDiv.innerHTML = '';
+
+        if (!data.length) {
+            apuntesDiv.innerHTML = '<div class="alert alert-warning">Sin datos...</div>';
+            return;
+        }
+
+        data.forEach(({ _id, Asignatura, Tema, Apuntes }) => {
             const card = document.createElement('div');
             card.className = 'card mb-3';
             card.innerHTML = `
@@ -33,122 +36,131 @@ const getApuntes = async () => {
                     <p class="card-text"><strong>Tema:</strong> ${Tema}</p>
                     <p class="card-text">${Apuntes}</p>
                     <button class="btn btn-danger" onclick="deleteApuntes('${_id}')">Eliminar</button>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onclick="editApunte('${_id}', '${Asignatura}', '${Tema}', '${Apuntes}')">Editar</button>
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
+                        onclick="editApunte('${_id}', '${Asignatura}', '${Tema}', '${Apuntes}')">Editar</button>
                 </div>
             `;
             apuntesDiv.appendChild(card);
         });
+    } catch (error) {
+        apuntesDiv.innerHTML = '<div class="alert alert-danger">Error al cargar datos</div>';
+        console.error(error);
     }
-}
+};
 
 const sendApuntes = async (e) => {
     e.preventDefault();
-    const asignatura = document.getElementById('asignatura').value;
-    const tema = document.getElementById('tema').value;
-    const apuntes = document.getElementById('apuntesText').value;
-    const data = {
-        Asignatura: asignatura,
-        Tema: tema,
-        Apuntes: apuntes
+    const asignatura = document.getElementById('asignatura').value.trim();
+    const tema = document.getElementById('tema').value.trim();
+    const apuntes = document.getElementById('apuntesText').value.trim();
+
+    if (!asignatura || !tema || !apuntes) {
+        alert("Todos los campos son obligatorios.");
+        return;
     }
+
+    const data = { Asignatura: asignatura, Tema: tema, Apuntes: apuntes };
     document.getElementById('form').reset();
-    const res = await fetch('http://localhost:444/api/apuntes', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    });
-    const json = await res.json();
-    console.log(json);
-    getApuntes();
-}
+
+    try {
+        const res = await fetch('http://localhost:444/api/apuntes', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
+        if (!res.ok) throw new Error('Error al enviar apunte');
+        getApuntes();
+    } catch (error) {
+        console.error('Error:', error);
+    }
+};
 
 const editApunte = (id, asignatura, tema, apuntes) => {
     document.getElementById('modal-id').value = id;
     document.getElementById('modal-asignatura').value = asignatura;
     document.getElementById('modal-tema').value = tema;
     document.getElementById('modal-apuntes').value = apuntes;
-}
+};
 
-// Hacer que la función esté disponible globalmente
 window.editApunte = editApunte;
 
 const updateApunte = async () => {
     const id = document.getElementById('modal-id').value;
-    const asignatura = document.getElementById('modal-asignatura').value;
-    const tema = document.getElementById('modal-tema').value;
-    const apuntes = document.getElementById('modal-apuntes').value;
+    const asignatura = document.getElementById('modal-asignatura').value.trim();
+    const tema = document.getElementById('modal-tema').value.trim();
+    const apuntes = document.getElementById('modal-apuntes').value.trim();
 
-    const data = {
-        Asignatura: asignatura,
-        Tema: tema,
-        Apuntes: apuntes
+    if (!asignatura || !tema || !apuntes) {
+        alert("Todos los campos son obligatorios.");
+        return;
     }
 
-    const res = await fetch(`http://localhost:444/api/apuntes/${id}`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    });
-    const json = await res.json();
-    console.log(json);
-    getApuntes();
-    $('#exampleModal').modal('hide');
-}
+    const data = { Asignatura: asignatura, Tema: tema, Apuntes: apuntes };
 
-// Hacer que la función esté disponible globalmente
-window.updateApunte = updateApunte;
+    try {
+        const res = await fetch(`http://localhost:444/api/apuntes/${id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
 
-document.getElementById('form').addEventListener('submit', sendApuntes);
-getApuntes();
+        if (!res.ok) throw new Error('Error al actualizar apunte');
 
+        getApuntes();
+
+        // Cerrar el modal en Bootstrap 4
+        $('#exampleModal').modal('hide');
+    } catch (error) {
+        console.error('Error:', error);
+    }
+};
 // Toggle dark mode
-const header = document.getElementById('header');
-const footer = document.getElementById('footer');
-const themeToggle = document.getElementById('theme-toggle');
+const header = document.getElementById("header");
+const footer = document.getElementById("footer");
+const themeToggle = document.getElementById("theme-toggle");
 
-// Check local storage for theme
-if (localStorage.getItem('theme') === 'dark') {
-    document.body.classList.add('dark-mode');
-    header.classList.add('bg-dark');
-    footer.classList.add('bg-dark');
-    document.querySelectorAll('.card').forEach(card => {
-        card.classList.add('dark-mode');
+// Función para aplicar el tema oscuro
+const applyDarkMode = (enable) => {
+    document.body.classList.toggle("dark-mode", enable);
+    header.classList.toggle("bg-dark", enable);
+    footer.classList.toggle("bg-dark", enable);
+
+    // Aplicar a elementos dinámicos como tarjetas y enlaces
+    document.querySelectorAll(".card").forEach((card) => {
+        card.classList.toggle("dark-mode", enable);
     });
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.classList.add('dark-mode');
+
+    document.querySelectorAll(".nav-link").forEach((link) => {
+        link.classList.toggle("dark-mode", enable);
     });
+
+    // Guardar preferencia en localStorage
+    localStorage.setItem("theme", enable ? "dark" : "light");
+};
+
+// Verificar si el usuario tenía activado el modo oscuro
+if (localStorage.getItem("theme") === "dark") {
+    applyDarkMode(true);
 }
 
-themeToggle.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-    header.classList.toggle('bg-dark');
-    footer.classList.toggle('bg-dark');
-    document.querySelectorAll('.card').forEach(card => {
-        card.classList.toggle('dark-mode');
-    });
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.classList.toggle('dark-mode');
-    });
-
-    // Save theme to local storage
-    if (document.body.classList.contains('dark-mode')) {
-        localStorage.setItem('theme', 'dark');
-    } else {
-        localStorage.setItem('theme', 'light');
-    }
+// Evento para cambiar el tema
+themeToggle.addEventListener("click", () => {
+    const isDarkMode = document.body.classList.contains("dark-mode");
+    applyDarkMode(!isDarkMode);
 });
 
-// Ensure dark mode is applied to dynamically added cards
+// Observer para aplicar modo oscuro a nuevas tarjetas dinámicas
 const observer = new MutationObserver(() => {
-    if (document.body.classList.contains('dark-mode')) {
-        document.querySelectorAll('.card').forEach(card => {
-            card.classList.add('dark-mode');
+    if (document.body.classList.contains("dark-mode")) {
+        document.querySelectorAll(".card").forEach((card) => {
+            card.classList.add("dark-mode");
         });
     }
 });
 
-observer.observe(document.getElementById('apuntes'), { childList: true });
+observer.observe(document.getElementById("apuntes"), { childList: true });
+
+window.updateApunte = updateApunte;
+
+document.getElementById('form').addEventListener('submit', sendApuntes);
+getApuntes();
