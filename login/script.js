@@ -24,8 +24,7 @@ window.login = function() {
 
     signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-            alert("¡Bienvenido!");
-            mostrarUsuario(userCredential.user);
+localStorage.setItem('email', userCredential.user.email);
         })
         .catch((error) => {
             alert("Error: " + error.message);
@@ -42,7 +41,6 @@ window.register = function() {
     createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             alert("¡Usuario registrado correctamente!");
-            mostrarUsuario(userCredential.user);
         })
         .catch((error) => {
             alert("Error: " + error.message);
@@ -52,6 +50,8 @@ window.register = function() {
 
 // Función para cerrar sesión
 window.logout = function() {
+    localStorage.removeItem('email');
+    window.location.href = "../home/index.html";
     signOut(auth)
         .then(() => {
             alert("Sesión cerrada");
@@ -65,13 +65,7 @@ window.logout = function() {
 // Detectar usuario autenticado
 onAuthStateChanged(auth, (user) => {
     if (user) {
-        mostrarUsuario(user);
     } else {
         document.getElementById("user-info").innerText = "";
     }
 });
-
-// Mostrar usuario logueado
-function mostrarUsuario(user) {
-    document.getElementById("user-info").innerText = "Usuario: " + user.email;
-}

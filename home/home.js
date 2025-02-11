@@ -1,7 +1,14 @@
+
 document.addEventListener('DOMContentLoaded', () => {
     const footer = document.querySelector('footer');
-    const header = document.querySelector('header'); // Asegúrate de que el header también esté seleccionado correctamente
-
+    const header = document.querySelector('header');
+    const user = document.getElementById('user');
+let user_email = localStorage.getItem('email');
+    if (user_email) {
+        user.innerHTML = user_email;
+    } else {
+        user.innerHTML = 'Usuario';
+    }
     if (localStorage.getItem('theme') === 'dark') {
         document.body.classList.add('bg-dark');
         document.body.classList.add('text-white');
