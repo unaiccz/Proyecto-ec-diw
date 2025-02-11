@@ -12,29 +12,17 @@ const getExamenes = async () => {
         examenesDiv.appendChild(alert);
     } else {
         data.forEach(element => {
-<<<<<<< HEAD
-            const { Fecha, Asignatura, Temas, _id } = element;
-=======
             const { _id, Fecha, Asignatura, Temas } = element;
->>>>>>> 70a60a87bb00fcc2f30a99aab56a6bf5c9f630f7
             const card = document.createElement('div');
             card.className = 'card mb-3';
             card.id = _id;  // Agregar el ID al card
             card.innerHTML = `
                 <div class="card-body">
-<<<<<<< HEAD
-                    <h2 class="card-title examen-asignatura">${Asignatura}</h2>
-                    <p class="card-text examen-fecha"><strong>Fecha:</strong> ${Fecha}</p>
-                    <p class="card-text examen-tema"><strong>Tema:</strong> ${Temas}</p>
-                    <button class="btn btn-danger" onclick="deleteExamen('${_id}')">Eliminar</button>
-                    <button class="btn btn-warning" onclick="openEditModal('${_id}')">Editar</button>
-=======
                     <h2 class="card-title">${Asignatura}</h2>
                     <p class="card-text"><strong>Fecha:</strong> ${Fecha}</p>
                     <p class="card-text"><strong>Tema:</strong> ${Temas}</p>
                     <button class="btn btn-danger" onclick="deleteExamen('${_id}')">Eliminar</button>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onclick="editExamen('${_id}', '${Fecha}', '${Asignatura}', '${Temas}')">Editar</button>
->>>>>>> 70a60a87bb00fcc2f30a99aab56a6bf5c9f630f7
                 </div>
             `;
             examenesDiv.appendChild(card);
@@ -134,30 +122,6 @@ const editExamen = (id, fecha, asignatura, temas) => {
     document.getElementById('modal-tema').value = temas;
 }
 
-const updateExamen = async () => {
-    const id = document.getElementById('modal-id').value;
-    const fecha = document.getElementById('modal-fecha').value;
-    const asignatura = document.getElementById('modal-asignatura').value;
-    const temas = document.getElementById('modal-tema').value;
-
-    const data = {
-        Fecha: fecha,
-        Asignatura: asignatura,
-        Temas: temas
-    }
-
-    const res = await fetch(`http://localhost:444/api/examenes/${id}`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    });
-    const json = await res.json();
-    console.log(json);
-    getExamenes();
-    $('#exampleModal').modal('hide');
-}
 
 document.getElementById('form').addEventListener('submit', sendExamen);
 getExamenes();
