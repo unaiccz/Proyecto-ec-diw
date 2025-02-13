@@ -2,7 +2,13 @@
         const header = document.getElementById('header');
         const footer = document.getElementById('footer');
         const themeToggle = document.getElementById('theme-toggle');
-        
+        const user = document.getElementById('user');
+        let user_email = localStorage.getItem('email');
+            if (user_email) {
+                user.innerHTML = user_email;
+            } else {
+                user.innerHTML = 'Usuario';
+            }
         // Check local storage for theme
         if (localStorage.getItem('theme') === 'dark') {
             document.body.classList.add('dark-mode');
