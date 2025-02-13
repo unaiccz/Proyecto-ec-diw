@@ -1,5 +1,5 @@
 const getTareas = async () => {
-    const res = await fetch('http://localhost:444/api/tareas');
+    const res = await fetch('https://backendv2-1kro.onrender.com/api/tareas');
     const data = await res.json();
     console.log(data);
     const tareasDiv = document.getElementById('apuntes');
@@ -46,7 +46,7 @@ const sendTarea = async (e) => {
         DatosInteres: datosInteres
     }
     document.getElementById('form').reset();
-    const res = await fetch('http://localhost:444/api/tareas', {
+    const res = await fetch('https://backendv2-1kro.onrender.com/api/tareas', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -59,7 +59,7 @@ const sendTarea = async (e) => {
 }
 
 const deleteTarea = async (id) => {
-    const res = await fetch(`http://localhost:444/api/tareas/${id}`, {
+    const res = await fetch(`https://backendv2-1kro.onrender.com/api/tareas/${id}`, {
         method: 'DELETE'
     });
     const json = await res.json();
@@ -92,7 +92,7 @@ const updateTarea = async () => {
         DatosInteres: datosInteres
     }
 
-    const res = await fetch(`http://localhost:444/api/tareas/${id}`, {
+    const res = await fetch(`https://backendv2-1kro.onrender.com/api/tareas/${id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'

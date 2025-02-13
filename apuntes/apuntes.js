@@ -1,6 +1,6 @@
 const deleteApuntes = async (id) => {
     try {
-        const res = await fetch(`http://localhost:444/api/apuntes/${id}`, {
+        const res = await fetch(`https://backendv2-1kro.onrender.com/api/apuntes/${id}`, {
             method: 'DELETE'
         });
         if (!res.ok) throw new Error('Error al eliminar apunte');
@@ -17,7 +17,7 @@ const getApuntes = async () => {
     apuntesDiv.innerHTML = '<p>Cargando...</p>';
 
     try {
-        const res = await fetch('http://localhost:444/api/apuntes');
+        const res = await fetch('https://backendv2-1kro.onrender.com/api/apuntes');
         if (!res.ok) throw new Error('No se pudieron obtener los apuntes');
         const data = await res.json();
         apuntesDiv.innerHTML = '';
@@ -63,7 +63,7 @@ const sendApuntes = async (e) => {
     document.getElementById('form').reset();
 
     try {
-        const res = await fetch('http://localhost:444/api/apuntes', {
+        const res = await fetch('https://backendv2-1kro.onrender.com/api/apuntes', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
@@ -98,7 +98,7 @@ const updateApunte = async () => {
     const data = { Asignatura: asignatura, Tema: tema, Apuntes: apuntes };
 
     try {
-        const res = await fetch(`http://localhost:444/api/apuntes/${id}`, {
+        const res = await fetch(`https://backendv2-1kro.onrender.com/api/apuntes/${id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
