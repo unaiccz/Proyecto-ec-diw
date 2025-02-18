@@ -1,16 +1,24 @@
 const user = document.getElementById('user');
 let user_email = localStorage.getItem('email');
-    if (user_email) {
-        user.innerHTML = user_email;
-    } else {
-        user.innerHTML = 'Usuario';
-    }
+if (user_email) {
+    user.innerHTML = user_email;
+} else {
+    user.innerHTML = 'Usuario';
+}
 const getTareas = async () => {
-    const res = await fetch('http://localhost:444/api/tareas');
+    const loadingDiv = document.getElementById('loading');
+    const tareasDiv = document.getElementById('apuntes');
+    
+    // Mostrar el mensaje de carga
+    loadingDiv.style.display = 'block';
+    tareasDiv.innerHTML = ''; // Limpiar el contenido anterior
+
+    const res = await fetch('https://backendv2-1kro.onrender.com/api/tareas');
     const data = await res.json();
     console.log(data);
-    const tareasDiv = document.getElementById('apuntes');
-    tareasDiv.innerHTML = ''; // Limpiar el contenido anterior
+
+    // Ocultar el mensaje de carga
+    loadingDiv.style.display = 'none';
 
     if (data.length === 0) {
         const alert = document.createElement('div');
@@ -46,6 +54,12 @@ const sendTarea = async (e) => {
     const tareas = document.getElementById('tarea').value;
     const fechaLimite = document.getElementById('fechaLimite').value;
     const datosInteres = document.getElementById('datosInteres').value;
+
+    if (!asignatura || !tareas || !fechaLimite || !datosInteres) {
+        alert('Todos los campos son obligatorios.');
+        return;
+    }
+
     const data = {
         Asignatura: asignatura,
         Tareas: tareas,
@@ -53,7 +67,7 @@ const sendTarea = async (e) => {
         DatosInteres: datosInteres
     }
     document.getElementById('form').reset();
-    const res = await fetch('http://localhost:444/api/tareas', {
+    const res = await fetch('https://backendv2-1kro.onrender.com/api/tareas', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -66,7 +80,7 @@ const sendTarea = async (e) => {
 }
 
 const deleteTarea = async (id) => {
-    const res = await fetch(`http://localhost:444/api/tareas/${id}`, {
+    const res = await fetch(`https://backendv2-1kro.onrender.com/api/tareas/${id}`, {
         method: 'DELETE'
     });
     const json = await res.json();
@@ -92,6 +106,11 @@ const updateTarea = async () => {
     const fechaLimite = document.getElementById('modal-fechaLimite').value;
     const datosInteres = document.getElementById('modal-datosInteres').value;
 
+    if (!asignatura || !tareas || !fechaLimite || !datosInteres) {
+        alert('Todos los campos son obligatorios.');
+        return;
+    }
+
     const data = {
         Asignatura: asignatura,
         Tareas: tareas,
@@ -99,7 +118,7 @@ const updateTarea = async () => {
         DatosInteres: datosInteres
     }
 
-    const res = await fetch(`http://localhost:444/api/tareas/${id}`, {
+    const res = await fetch(`https://backendv2-1kro.onrender.com/api/tareas/${id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'

@@ -100,3 +100,10 @@ justify-content: space-between;
 flex-direction: column;
 margin: 0 10px;
 }
+/* Estilos para el mensaje de carga */
+.loading {
+    display: none; /* Oculto por defecto */
+    text-align: center;
+    font-size: 1.5em;
+    color: #333;
+}

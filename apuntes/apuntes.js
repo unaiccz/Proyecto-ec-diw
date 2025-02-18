@@ -7,7 +7,7 @@ let user_email = localStorage.getItem('email');
     }
 const deleteApuntes = async (id) => {
     try {
-        const res = await fetch(`http://localhost:444/api/apuntes/${id}`, {
+        const res = await fetch(`https://backendv2-1kro.onrender.com/api/apuntes/${id}`, {
             method: 'DELETE'
         });
         if (!res.ok) throw new Error('Error al eliminar apunte');
@@ -24,7 +24,7 @@ const getApuntes = async () => {
     apuntesDiv.innerHTML = '<p>Cargando...</p>';
 
     try {
-        const res = await fetch('http://localhost:444/api/apuntes');
+        const res = await fetch('https://backendv2-1kro.onrender.com/api/apuntes');
         if (!res.ok) throw new Error('No se pudieron obtener los apuntes');
         const data = await res.json();
         apuntesDiv.innerHTML = '';
@@ -70,7 +70,7 @@ const sendApuntes = async (e) => {
     document.getElementById('form').reset();
 
     try {
-        const res = await fetch('http://localhost:444/api/apuntes', {
+        const res = await fetch('https://backendv2-1kro.onrender.com/api/apuntes', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
@@ -93,9 +93,9 @@ window.editApunte = editApunte;
 
 const updateApunte = async () => {
     const id = document.getElementById('modal-id').value;
-    const asignatura = document.getElementById('modal-asignatura').value.trim();
-    const tema = document.getElementById('modal-tema').value.trim();
-    const apuntes = document.getElementById('modal-apuntes').value.trim();
+    const asignatura = document.getElementById('modal-asignatura').value;
+    const tema = document.getElementById('modal-tema').value;
+    const apuntes = document.getElementById('modal-apuntes').value;
 
     if (!asignatura || !tema || !apuntes) {
         alert("Todos los campos son obligatorios.");
@@ -105,7 +105,7 @@ const updateApunte = async () => {
     const data = { Asignatura: asignatura, Tema: tema, Apuntes: apuntes };
 
     try {
-        const res = await fetch(`http://localhost:444/api/apuntes/${id}`, {
+        const res = await fetch(`https://backendv2-1kro.onrender.com/api/apuntes/${id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)

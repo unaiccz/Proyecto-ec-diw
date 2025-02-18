@@ -37,7 +37,6 @@ window.location.href = "../home/index.html";
 window.register = function() {
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
-
     createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             alert("¡Usuario registrado correctamente!");
@@ -45,8 +44,7 @@ window.register = function() {
         .catch((error) => {
             alert("Error: " + error.message);
         });
-        window.location.href = "../home/index.html";
-};
+    };
 
 // Función para cerrar sesión
 window.logout = function() {
