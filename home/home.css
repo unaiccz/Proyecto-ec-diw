@@ -103,3 +103,28 @@ justify-content: space-between;
 .item2 .theme-switch{
     margin: 5px 0;
 }  
+
+
+/* audio */
+
+
+.audio-player {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+
+
+audio {
+  width: 100%;
+  margin-top: 20px;
+}
+.audio-player h1 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+color: #000;
+}
