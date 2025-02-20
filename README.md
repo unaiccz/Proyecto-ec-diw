@@ -22,10 +22,6 @@ Teacher's Hub es una aplicación web diseñada para facilitar la gestión de tar
     ```bash
     git clone https://github.com/tu-usuario/teacher-hub.git
     ```
-2. Navega al directorio del proyecto:
-    ```bash
-    cd teacher-hub/backend
-    ```
 3. Copia la carpeta en el directorio http de un servidor ejeplo: xamp
 C:/xampp/htdocs/nombre_de_carpeta
 
