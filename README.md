@@ -26,18 +26,13 @@ Teacher's Hub es una aplicación web diseñada para facilitar la gestión de tar
     ```bash
     cd teacher-hub/backend
     ```
-3. Instala las dependencias del backend:
-    ```bash
-    npm install
-    ```
+3. Copia la carpeta en el directorio http de un servidor ejeplo: xamp
+C:/xampp/htdocs/nombre_de_carpeta
+
 
 ## Uso
-
-1. Inicia el servidor:
-    ```bash
-    node app.js
-    ```
-2. Abre tu navegador y navega a `http://localhost:3000` para ver la aplicación en funcionamiento.
+1. inicia apache en xampp
+2. navega a http://localhost/nombre_de_carpeta/home
 
 ## Contribución
 
