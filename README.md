@@ -46,4 +46,4 @@ Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo LICENSE
 
 ## Contacto
 
-Si tienes alguna pregunta o sugerencia, no dudes en contactarnos a través de [correo@ejemplo.com](mailto:correo@ejemplo.com).
+Si tienes alguna pregunta o sugerencia, no dudes en contactarnos a través de [correo@ejemplo.com](mailto:unaicc2003@gmail.com).
