@@ -3,7 +3,8 @@ let user_email = localStorage.getItem('email');
 if (user_email) {
     user.innerHTML = user_email;
 } else {
-    user.innerHTML = 'Usuario';
+    window.location.href = '/teachershub3/login';
+    
 }
 const getExamenes = async () => {
     const loadingDiv = document.getElementById('loading');

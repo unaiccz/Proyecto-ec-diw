@@ -113,3 +113,12 @@ margin: 0 10px;
     font-size: 1.5em;
     color: #333;
 }
+main{
+  height: auto;
+}
+@media screen and (max-width: 768px) {
+  main{
+    height: auto;
+  }
+
+}
