@@ -1,3 +1,9 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
 .dark-mode a img {
   filter: brightness(0) invert(1);
 }
@@ -18,6 +24,7 @@ header.dark-mode, footer.dark-mode {
   color: #ffffff;
 }
 main{
+  flex: 1;
   height: auto;
 }
 @media screen and (max-width: 768px) {
