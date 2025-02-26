@@ -35,7 +35,7 @@ const getTareas = async () => {
                     <h2 class="card-title">${Asignatura}</h2>
                     <p class="card-text"><strong>Tareas:</strong> ${Tareas}</p>
                     <p class="card-text"><strong>Fecha Límite:</strong> ${FechaLimite}</p>
-                    <p class="card-text">Datos de interes:  ${DatosInteres}</p>
+                    <p class="card-text"><strong>Datos de interes:</strong>  ${DatosInteres}</p>
                     <p class="card-text"><strong>Autor:</strong> ${creador}</p>
                     <button class="btn btn-danger" onclick="deleteTarea('${_id}')">Eliminar</button>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onclick="editTarea('${_id}', '${Asignatura}', '${Tareas}', '${FechaLimite}', '${DatosInteres}')">Editar</button>
