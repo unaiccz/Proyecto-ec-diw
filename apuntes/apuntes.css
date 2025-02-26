@@ -5,6 +5,10 @@ html, body {
   display: flex;
   flex-direction: column;
 }
+main{
+  flex: 1;
+  height: auto;
+}
 .dark-mode a img {
     filter: brightness(0) invert(1);
 }
@@ -24,10 +28,6 @@ body.dark-mode {
 header.dark-mode, footer.dark-mode {
     background-color: #1e1e1e;
     color: #ffffff;
-}
-main{
-  flex: 1;
-  height: auto;
 }
 @media screen and (max-width: 768px) {
   main{

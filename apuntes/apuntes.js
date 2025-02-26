@@ -28,6 +28,8 @@ const getApuntes = async () => {
         const res = await fetch('https://backendv2-1kro.onrender.com/api/apuntes');
         if (!res.ok) throw new Error('No se pudieron obtener los apuntes');
         const data = await res.json();
+        console.log(data);
+        
         apuntesDiv.innerHTML = '';
 
         if (!data.length) {
@@ -35,7 +37,7 @@ const getApuntes = async () => {
             return;
         }
 
-        data.forEach(({ _id, Asignatura, Tema, Apuntes }) => {
+        data.forEach(({ _id, Asignatura, Tema, Apuntes, creador }) => {
             const card = document.createElement('div');
             card.className = 'card mb-3';
             card.innerHTML = `
@@ -43,6 +45,7 @@ const getApuntes = async () => {
                     <h2 class="card-title">${Asignatura}</h2>
                     <p class="card-text"><strong>Tema:</strong> ${Tema}</p>
                     <p class="card-text">${Apuntes}</p>
+                    <p class="card-text"><strong>Autor:</strong> ${creador}</p>
                     <button class="btn btn-danger" onclick="deleteApuntes('${_id}')">Eliminar</button>
                     <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
                         onclick="editApunte('${_id}', '${Asignatura}', '${Tema}', '${Apuntes}')">Editar</button>
@@ -67,7 +70,7 @@ const sendApuntes = async (e) => {
         return;
     }
 
-    const data = { Asignatura: asignatura, Tema: tema, Apuntes: apuntes };
+    const data = { Asignatura: asignatura, Tema: tema, Apuntes: apuntes, creador: user_email };
     document.getElementById('form').reset();
 
     try {

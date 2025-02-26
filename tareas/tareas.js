@@ -27,7 +27,7 @@ const getTareas = async () => {
         tareasDiv.appendChild(alert);
     } else {
         data.forEach(element => {
-            const { _id, Asignatura, Tareas, FechaLimite, DatosInteres } = element;
+            const { _id, Asignatura, Tareas, FechaLimite, DatosInteres, creador } = element;
             const card = document.createElement('div');
             card.className = 'card mb-3';
             card.innerHTML = `
@@ -36,6 +36,7 @@ const getTareas = async () => {
                     <p class="card-text"><strong>Tareas:</strong> ${Tareas}</p>
                     <p class="card-text"><strong>Fecha Límite:</strong> ${FechaLimite}</p>
                     <p class="card-text">Datos de interes:  ${DatosInteres}</p>
+                    <p class="card-text"><strong>Autor:</strong> ${creador}</p>
                     <button class="btn btn-danger" onclick="deleteTarea('${_id}')">Eliminar</button>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onclick="editTarea('${_id}', '${Asignatura}', '${Tareas}', '${FechaLimite}', '${DatosInteres}')">Editar</button>
                 </div>
@@ -64,7 +65,8 @@ const sendTarea = async (e) => {
         Asignatura: asignatura,
         Tareas: tareas,
         FechaLimite: fechaLimite,
-        DatosInteres: datosInteres
+        DatosInteres: datosInteres,
+        creador: user_email
     }
     document.getElementById('form').reset();
     const res = await fetch('https://backendv2-1kro.onrender.com/api/tareas', {

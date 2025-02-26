@@ -28,7 +28,7 @@ const getExamenes = async () => {
         examenesDiv.appendChild(alert);
     } else {
         data.forEach(element => {
-            const { _id, Fecha, Asignatura, Temas } = element;
+            const { _id, Fecha, Asignatura, Temas, creador } = element;
             const card = document.createElement('div');
             card.className = 'card mb-3';
             card.innerHTML = `
@@ -36,6 +36,7 @@ const getExamenes = async () => {
                     <h2 class="card-title">${Asignatura}</h2>
                     <p class="card-text"><strong>Fecha:</strong> ${Fecha}</p>
                     <p class="card-text"><strong>Tema:</strong> ${Temas}</p>
+                    <p class="card-text"><strong>Autor:</strong> ${creador}</p>
                     <button class="btn btn-danger" onclick="deleteExamen('${_id}')">Eliminar</button>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onclick="editExamen('${_id}', '${Fecha}', '${Asignatura}', '${Temas}')">Editar</button>
                 </div>
@@ -61,7 +62,8 @@ const sendExamen = async (e) => {
     const data = {
         Fecha: fecha,
         Asignatura: asignatura,
-        Temas: tema
+        Temas: tema,
+        creador: user_email
     }
     document.getElementById('form').reset();
     const res = await fetch('https://backendv2-1kro.onrender.com/api/examenes', {
